@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	android:layout_width="match_parent"
+	android:layout_height="wrap_content"
+	android:background="@color/bg_top_bar">
+
+	<ImageButton
+		android:id="@+id/ib_back_top"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:background="@drawable/ib_back_selector"
+		android:layout_alignParentLeft="true"
+		android:layout_centerVertical="true"
+		android:layout_marginLeft="10dp"
+		android:layout_marginTop="10dp"
+		android:layout_marginBottom="10dp"
+		android:contentDescription="@string/app_name"/>
+
+	<ImageButton
+		android:id="@+id/ib_add_mark_top"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:background="@drawable/ib_mark_selector"
+		android:layout_alignParentRight="true"
+		android:layout_centerVertical="true"
+		android:layout_marginRight="10dp"
+		android:layout_marginLeft="10dp"
+		android:layout_marginTop="10dp"
+		android:layout_marginBottom="10dp"
+		android:contentDescription="@string/app_name"/>
+
+	<TextView
+		android:id="@+id/tv_name_top"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:textSize="20sp"
+		android:textColor="@android:color/white"
+		android:layout_toRightOf="@id/ib_back_top"
+		android:layout_toLeftOf="@id/ib_add_mark"
+		android:singleLine="true"
+		android:maxLines="1"
+		android:ellipsize="end"
+		android:layout_centerVertical="true"
+		android:layout_marginLeft="6dp"
+		android:layout_marginTop="10dp"
+		android:layout_marginBottom="10dp"/>
+
+</RelativeLayout>

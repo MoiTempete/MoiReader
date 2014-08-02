@@ -23,13 +23,4 @@
         android:scrollbars="none"
         android:verticalSpacing="20dp" />
 
-
-    <LinearLayout
-        android:id="@+id/adLayout"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:gravity="center_horizontal" >
-    </LinearLayout>
-
 </RelativeLayout>

@@ -1,0 +1,11 @@
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+	<item
+		android:state_pressed="false"
+		android:drawable="@drawable/ib_back"/>
+	<item
+		android:state_pressed="true"
+		android:drawable="@drawable/ib_back_pressed"/>
+	<item
+		android:state_focused="true"
+		android:drawable="@drawable/ib_back_pressed"/>
+</selector>

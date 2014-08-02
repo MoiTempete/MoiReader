@@ -13,7 +13,7 @@
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="20dip"
-        android:textSize="20dip" >
+        android:textSize="20sp" >
     </TextView>
 
     <SeekBar

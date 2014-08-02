@@ -2,7 +2,11 @@ package com.shixforever.reader.activity;
 
 import java.io.IOException;
 import java.text.DecimalFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
+
+import android.content.Intent;
 import com.shixforever.reader.R;
 import com.shixforever.reader.data.BookFile;
 import com.shixforever.reader.module.BookMark;
@@ -41,6 +45,14 @@ import android.widget.Toast;
 public class BookActivity extends Activity implements OnSeekBarChangeListener,
         OnClickListener {
 
+    private static final String TAG = "BookActivity";
+
+    public static final int DIR_CODE = 123;
+
+    public static final String DIR_KEY = "begin";
+
+    public static final String DIR_NAME = "filepath";
+
     private PageWidget mPageWidget;
 
     Bitmap mCurPageBitmap, mNextPageBitmap;
@@ -74,7 +86,7 @@ public class BookActivity extends Activity implements OnSeekBarChangeListener,
     private PopupWindow mPopupWindow, mToolpop, mToolpop1, mToolpop2,
             mToolpop3, mToolpop4;
 
-    private View popupwindwow, toolpop, toolpop1, toolpop2, toolpop3, toolpop4;
+    private View popupwindwow, toolpop, toolpop1, toolpop2, toolpop3, toolpop4, topBar;
 
     private SeekBar seekBar1, seekBar2, seekBar4;
 
@@ -133,6 +145,7 @@ public class BookActivity extends Activity implements OnSeekBarChangeListener,
         mNextPageCanvas = new Canvas(mNextPageBitmap);
         setContentView(R.layout.read);
         RelativeLayout rlayout = (RelativeLayout) findViewById(R.id.readlayout);
+        topBar = findViewById(R.id.top_bar);
         rlayout.addView(mPageWidget);
 
         // 工厂
@@ -140,6 +153,7 @@ public class BookActivity extends Activity implements OnSeekBarChangeListener,
 
         BookFile bookFile = (BookFile) getIntent().getExtras().getSerializable("path");
         filepath = bookFile.name;
+        initTopBar();
 
         // 阅读背景
         pagefactory.setBgBitmap(BitmapFactory.decodeResource(
@@ -312,21 +326,22 @@ public class BookActivity extends Activity implements OnSeekBarChangeListener,
      */
     public void pop() {
 
+        topBar.setVisibility(View.VISIBLE);
         mPopupWindow.showAtLocation(mPageWidget, Gravity.BOTTOM, 0, 0);
         TextView btnDirectory = (TextView) popupwindwow.findViewById(R.id.btn_directory);
         TextView btnProgress = (TextView) popupwindwow.findViewById(R.id.btn_progress);
         TextView btnTextSize = (TextView) popupwindwow.findViewById(R.id.btn_text_size);
         TextView btnBrightness = (TextView) popupwindwow.findViewById(R.id.btn_brightness);
         final TextView btnNight = (TextView) popupwindwow.findViewById(R.id.btn_night);
-        if (isNight) {
-            btnNight.setCompoundDrawables(null, getResources().getDrawable(R.drawable.btn_night), null, null);
-            btnNight.setCompoundDrawablePadding(6);
-            btnNight.setText(getString(R.string.bookpop_night));
-        } else {
-            btnNight.setCompoundDrawables(null, getResources().getDrawable(R.drawable.btn_day), null, null);
-            btnNight.setCompoundDrawablePadding(6);
-            btnNight.setText(getString(R.string.bookpop_day));
-        }
+        //        if (isNight) {
+        //            btnNight.setCompoundDrawables(null, getResources().getDrawable(R.drawable.btn_night), null, null);
+        //            btnNight.setCompoundDrawablePadding(6);
+        //            btnNight.setText(getString(R.string.bookpop_night));
+        //        } else {
+        //            btnNight.setCompoundDrawables(null, getResources().getDrawable(R.drawable.btn_day), null, null);
+        //            btnNight.setCompoundDrawablePadding(6);
+        //            btnNight.setText(getString(R.string.bookpop_day));
+        //        }
 
         btnDirectory.setOnClickListener(this);
         btnProgress.setOnClickListener(this);
@@ -337,13 +352,13 @@ public class BookActivity extends Activity implements OnSeekBarChangeListener,
             public void onClick(View v) {
                 if (!isNight) {
                     btnNight.setCompoundDrawables(null, getResources().getDrawable(R.drawable.btn_night), null, null);
-//                    btnNight.setCompoundDrawablePadding(6);
+                    //                    btnNight.setCompoundDrawablePadding(6);
                     btnNight.setText(getString(R.string.bookpop_night));
                     isNight = true;
                     //TODO
                 } else {
                     btnNight.setCompoundDrawables(null, getResources().getDrawable(R.drawable.btn_day), null, null);
-//                    btnNight.setCompoundDrawablePadding(6);
+                    //                    btnNight.setCompoundDrawablePadding(6);
                     btnNight.setText(getString(R.string.bookpop_day));
                     isNight = false;
                     //TODO
@@ -383,13 +398,61 @@ public class BookActivity extends Activity implements OnSeekBarChangeListener,
     }
 
     @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        switch (requestCode) {
+            case DIR_CODE:
+                if (data != null) {
+                    int markBegin = data.getExtras().getInt(DIR_KEY);
+                    if (markBegin > 0) {
+                        try {
+                            pagefactory.nextPage();
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+                        pagefactory.setM_mbBufEnd(markBegin);
+                        pagefactory.setM_mbBufBegin(markBegin);
+                        pagefactory.onDraw(mNextPageCanvas);
+                        mPageWidget.setBitmaps(mCurPageBitmap,
+                                mNextPageBitmap);
+                        mPageWidget.invalidate();
+                        postInvalidateUI();
+                    }
+                }
+                break;
+        }
+    }
+
+    @Override
     public void onClick(View v) {
         switch (v.getId()) {
 
+            case R.id.ib_back_top:
+                finish();
+                break;
+
+            case R.id.ib_add_mark_top:
+                BookMark mark = new BookMark();
+                mark.name = filepath;
+                mark.begin = begin;
+                mark.time = getStringCurrentDate();
+                if (word.trim().equals("")) {
+                    mark.word = pagefactory.getSecLineText().trim();
+                } else {
+                    mark.word = word.trim();
+                }
+                mark.word += "\n" + mark.time;
+                mgr.addMarks(mark);
+                Toast.makeText(getApplication(), "书签添加成功", Toast.LENGTH_SHORT).show();
+                break;
+
             // 目录
             case R.id.btn_directory:
-                a = 3;
-                setToolPop(a);
+                //                a = 3;
+                //                setToolPop(a);
+                Intent intent = new Intent(this, DirectoryActivity.class);
+                intent.putExtra(DIR_NAME, filepath);
+                startActivityForResult(intent, DIR_CODE);
                 break;
 
             // 进度
@@ -409,56 +472,6 @@ public class BookActivity extends Activity implements OnSeekBarChangeListener,
                 setToolPop(a);
                 break;
 
-            // 添加书签
-            case R.id.ib_add_mark:
-                BookMark mark = new BookMark();
-                mark.name = filepath;
-                mark.begin = begin;
-                if (word.trim().equals("")) {
-                    mark.word = pagefactory.getSecLineText();
-                } else {
-                    mark.word = word.trim();
-                }
-                mgr.addMarks(mark);
-                mToolpop3.dismiss();
-                mToolpop.dismiss();
-                Toast.makeText(getApplication(), "添加完成", Toast.LENGTH_SHORT).show();
-                break;
-
-            // 全部书签
-            case R.id.ib_all_mark:
-                bookmarks = mgr.queryMarks(filepath);
-                if (bookmarks.size() <= 0) {
-                    Toast.makeText(BookActivity.this, "木有书签", Toast.LENGTH_SHORT)
-                            .show();
-                } else {
-                    String[] items = new String[bookmarks.size()];
-                    for (int i = 0; i < bookmarks.size(); i++) {
-                        items[i] = bookmarks.get(i).word;
-                    }
-                    new AlertDialog.Builder(BookActivity.this)
-                            .setItems(items, new DialogInterface.OnClickListener() {
-                                public void onClick(DialogInterface dialog,
-                                        int which) {
-                                    try {
-                                        pagefactory.nextPage();
-                                    } catch (IOException e) {
-                                        e.printStackTrace();
-                                    }
-                                    pagefactory.setM_mbBufEnd(bookmarks.get(which).begin);
-                                    pagefactory.setM_mbBufBegin(bookmarks
-                                            .get(which).begin);
-                                    pagefactory.onDraw(mNextPageCanvas);
-                                    mPageWidget.setBitmaps(mCurPageBitmap,
-                                            mNextPageBitmap);
-                                    mPageWidget.invalidate();
-                                    postInvalidateUI();
-                                    mToolpop3.dismiss();
-                                    mToolpop.dismiss();
-                                }
-                            }).create().show();
-                }
-                break;
             default:
                 break;
         }
@@ -607,6 +620,7 @@ public class BookActivity extends Activity implements OnSeekBarChangeListener,
         mToolpop2.dismiss();
         mToolpop3.dismiss();
         mToolpop4.dismiss();
+        topBar.setVisibility(View.INVISIBLE);
     }
 
     @Override
@@ -617,6 +631,15 @@ public class BookActivity extends Activity implements OnSeekBarChangeListener,
     @Override
     public void onStopTrackingTouch(SeekBar seekBar) {
 
+    }
+
+    private void initTopBar() {
+        ImageButton back = (ImageButton) findViewById(R.id.ib_back_top);
+        ImageButton addMark = (ImageButton) findViewById(R.id.ib_add_mark_top);
+        TextView name = (TextView) findViewById(R.id.tv_name_top);
+        name.setText(filepath);
+        back.setOnClickListener(this);
+        addMark.setOnClickListener(this);
     }
 
     private void setReadBg() {
@@ -636,4 +659,10 @@ public class BookActivity extends Activity implements OnSeekBarChangeListener,
         editor.commit();
     }
 
+    public static String getStringCurrentDate() {
+        Date currentTime = new Date();
+        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        String dateString = formatter.format(currentTime);
+        return dateString;
+    }
 }

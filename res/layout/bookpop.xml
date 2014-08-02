@@ -28,7 +28,7 @@
 			android:drawablePadding="5px"
 			android:gravity="center"
 			android:textColor="@color/txt_tool_bar"
-			android:text="@string/bookpop_size"/>
+			android:text="@string/bookpop_directory"/>
 
 		<TextView
 			android:id="@+id/btn_progress"

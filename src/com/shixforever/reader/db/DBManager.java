@@ -42,8 +42,8 @@ public class DBManager {
 	public void addMarks(BookMark mark) {
 		db.beginTransaction();
 		try {
-			db.execSQL("INSERT INTO marks VALUES(null, ?, ?,?)", new Object[] {
-					mark.begin, mark.word, mark.name });
+			db.execSQL("INSERT INTO marks VALUES(null, ?, ?, ?)", new Object[] {
+					mark.begin, mark.word, mark.name});
 			db.setTransactionSuccessful();
 		} finally {
 

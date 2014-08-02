@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	android:layout_width="match_parent"
+	android:layout_height="match_parent"
+	android:background="@android:color/white">
+
+	<LinearLayout
+		android:id="@+id/ll_top_dir"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:background="@color/bg_top_bar"
+		android:orientation="horizontal"
+		android:gravity="center_vertical">
+
+		<ImageButton
+			android:id="@+id/ib_back_dir"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:background="@drawable/ib_back_selector"
+			android:layout_marginLeft="10dp"
+			android:layout_marginTop="10dp"
+			android:layout_marginBottom="10dp"
+			android:contentDescription="@string/app_name"/>
+
+		<TextView
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:textSize="20sp"
+			android:textColor="@android:color/white"
+			android:text="@string/bookpop_directory"
+			android:layout_marginLeft="6dp"
+			android:layout_marginTop="10dp"
+			android:layout_marginBottom="10dp"/>
+	</LinearLayout>
+
+	<TextView
+		android:id="@+id/tv_name_dir"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:layout_below="@id/ll_top_dir"
+		android:layout_marginTop="15dp"
+		android:layout_marginLeft="15dp"
+		android:textSize="20sp"
+		android:textColor="@android:color/black"
+		android:text="重生之衙内"/>
+
+	<TextView
+		android:id="@+id/tv_author_dir"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:layout_below="@id/tv_name_dir"
+		android:layout_marginTop="10dp"
+		android:layout_marginLeft="15dp"
+		android:textSize="12sp"
+		android:textColor="#77000000"
+		android:text="作者：天上不会掉馅饼"/>
+
+	<TextView
+		android:id="@+id/tv_tag_dir"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:layout_below="@id/tv_author_dir"
+		android:layout_marginTop="20dp"
+		android:layout_marginLeft="35dp"
+		android:textSize="16sp"
+		android:textColor="@android:color/black"
+		android:text="书签"/>
+
+	<TextView
+		android:id="@+id/divider_dir"
+		android:layout_width="match_parent"
+		android:layout_height="1px"
+		android:background="@color/divider_tool_bar"
+		android:layout_marginTop="5dp"
+		android:layout_marginBottom="5dp"
+		android:layout_below="@id/tv_tag_dir"/>
+
+	<ListView
+		android:id="@+id/lv_dir"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:layout_below="@id/divider_dir"
+		android:layout_marginLeft="12dp"
+		android:divider="#D1D1D1"
+		android:cacheColorHint="@android:color/transparent"
+		android:listSelector="@android:color/transparent"
+		android:dividerHeight="1px"/>
+
+	<TextView
+		android:id="@+id/empty_view_dir"
+		android:layout_width="match_parent"
+		android:layout_height="match_parent"
+		android:layout_below="@id/divider_dir"
+		android:textSize="18sp"
+		android:textColor="#77000000"
+		android:gravity="center"
+		android:visibility="gone"/>
+</RelativeLayout>
