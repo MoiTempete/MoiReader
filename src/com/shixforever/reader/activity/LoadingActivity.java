@@ -35,7 +35,7 @@ public class LoadingActivity extends BaseActivity implements OnClickListener {
 	private Thread copyDbThread = new Thread() {
 		public void run() {
 			FileManager.getInstance().moveToSystemDatabaseDir(copyDB);
-		};
+		}
 	};
 
 	// private Thread thread = new Thread()

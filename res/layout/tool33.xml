@@ -8,7 +8,7 @@
     android:background="@drawable/tool33" >
 
     <ImageButton
-        android:id="@+id/imageBtn3_1"
+        android:id="@+id/ib_add_mark"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="30dip"
@@ -19,7 +19,7 @@
     </ImageButton>
 
     <ImageButton
-        android:id="@+id/imageBtn3_2"
+        android:id="@+id/ib_all_mark"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="169dip"

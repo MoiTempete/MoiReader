@@ -13,7 +13,7 @@ import com.shixforever.reader.utils.FusionField;
 import android.os.Environment;
 
 public class FileManager {
-	public static final String DATABASE_NAME = "wow.com.shixforever.reader.db";
+	public static final String DATABASE_NAME = "wow.db";
 	private static final String SYS_DATABASE_PATH = "/data/data/"
 			+ FusionField.baseActivity.getPackageName() + "/databases/";
 	private static FileManager manager = null;
@@ -147,10 +147,7 @@ public class FileManager {
 	 */
 	public boolean isFileExists(String filePath) {
 		File file = new File(filePath);
-		if (file.exists()) {
-			return true;
-		}
-		return false;
-	}
+        return file.exists();
+    }
 
 }

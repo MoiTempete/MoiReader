@@ -14,7 +14,7 @@ import android.database.sqlite.SQLiteDatabase;
 public class DBManager {
 	private DBHelper helper;
 	private SQLiteDatabase db;
-	private static final String DATABASE_NAME = "wow.com.shixforever.reader.db";
+	private static final String DATABASE_NAME = "wow.db";
 	private static final int DATABASE_VERSION = 1;
 
 	public DBManager(Context context) {

@@ -217,18 +217,18 @@ public class BookShelfActivity extends BaseActivity {
 		if (file.isDirectory()) {
 			File[] fileArray = file.listFiles();
 			if (null != fileArray && 0 != fileArray.length) {
-				for (int i = 0; i < fileArray.length; i++) {
-					BookFile bookFile = new BookFile();
-					bookFile.path = fileArray[i].getPath();
-					bookFile.name = fileArray[i]
-							.getPath()
-							.trim()
-							.substring(
-									fileArray[i].getPath().trim()
-											.lastIndexOf("/") + 1);
-					bookFile.flag = "1";
-					booksdata.add(bookFile);
-				}
+                for (File aFileArray : fileArray) {
+                    BookFile bookFile = new BookFile();
+                    bookFile.path = aFileArray.getPath();
+                    bookFile.name = aFileArray
+                            .getPath()
+                            .trim()
+                            .substring(
+                                    aFileArray.getPath().trim()
+                                            .lastIndexOf("/") + 1);
+                    bookFile.flag = "1";
+                    booksdata.add(bookFile);
+                }
 
 			}
 		}

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+	<color name="bg_tool_bar">#DDFFFFFF</color>
+	<color name="divider_tool_bar">#FFA5A5A5</color>
+	<color name="txt_tool_bar">#FF5E5E5E</color>
+	<color name="bg_read_day">#FFF1E5CD</color>
+	<color name="txt_read_day">#FF562A16</color>
+	<color name="bg_read_night">#FF000000</color>
+	<color name="txt_read_night">#FF282828</color>
+</resources>

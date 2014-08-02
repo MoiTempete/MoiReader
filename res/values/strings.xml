@@ -5,9 +5,11 @@
     <string name="close">关闭</string>
     <string name="open">打开</string>
     <string name="copy_finish">文件准备完成</string>
-    <string name="bookpop_size">文字调整</string>
-    <string name="bookpop_light">调节亮度</string>
-    <string name="bookpop_card">设置书签</string>
-    <string name="bookpop_send">意见反馈</string>
+	<string name="bookpop_directory">目录</string>
+	<string name="bookpop_progress">进度</string>
+    <string name="bookpop_size">字体</string>
+    <string name="bookpop_light">亮度</string>
+    <string name="bookpop_night">夜间</string>
+	<string name="bookpop_day">白天</string>
 
 </resources>
