@@ -5,7 +5,6 @@ import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
-
 import android.content.Intent;
 import com.shixforever.reader.R;
 import com.shixforever.reader.data.BookFile;
@@ -679,7 +678,6 @@ public class BookActivity extends Activity implements OnSeekBarChangeListener,
     public static String getStringCurrentDate() {
         Date currentTime = new Date();
         SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-        String dateString = formatter.format(currentTime);
-        return dateString;
+        return formatter.format(currentTime);
     }
 }

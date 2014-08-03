@@ -79,17 +79,16 @@
       <file leaf-file-name="BookActivity.java" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/com/shixforever/reader/activity/BookActivity.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="673" column="36" selection-start="24934" selection-end="24934" vertical-scroll-proportion="0.5765896" vertical-offset="12388" max-vertical-offset="13129">
+            <state line="7" column="0" selection-start="183" selection-end="183" vertical-scroll-proportion="-9.88" vertical-offset="7543" max-vertical-offset="13091">
               <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="e#5505#7967#0" expanded="true" />
-                <element signature="e#7956#7957#0" expanded="true" />
-                <element signature="e#11800#11833#0" expanded="true" />
-                <element signature="e#11882#11913#0" expanded="true" />
-                <element signature="e#12150#12633#0" expanded="true" />
-                <element signature="e#12307#12340#0" expanded="true" />
-                <element signature="e#12441#12472#0" expanded="true" />
-                <element signature="e#12622#12623#0" expanded="true" />
+                <element signature="e#5504#7966#0" expanded="true" />
+                <element signature="e#7955#7956#0" expanded="true" />
+                <element signature="e#11799#11832#0" expanded="true" />
+                <element signature="e#11881#11912#0" expanded="true" />
+                <element signature="e#12149#12632#0" expanded="true" />
+                <element signature="e#12306#12339#0" expanded="true" />
+                <element signature="e#12440#12471#0" expanded="true" />
+                <element signature="e#12621#12622#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -997,17 +996,16 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/shixforever/reader/activity/BookActivity.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="673" column="36" selection-start="24934" selection-end="24934" vertical-scroll-proportion="0.5765896" vertical-offset="12388" max-vertical-offset="13129">
+        <state line="7" column="0" selection-start="183" selection-end="183" vertical-scroll-proportion="-9.88" vertical-offset="7543" max-vertical-offset="13091">
           <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#5505#7967#0" expanded="true" />
-            <element signature="e#7956#7957#0" expanded="true" />
-            <element signature="e#11800#11833#0" expanded="true" />
-            <element signature="e#11882#11913#0" expanded="true" />
-            <element signature="e#12150#12633#0" expanded="true" />
-            <element signature="e#12307#12340#0" expanded="true" />
-            <element signature="e#12441#12472#0" expanded="true" />
-            <element signature="e#12622#12623#0" expanded="true" />
+            <element signature="e#5504#7966#0" expanded="true" />
+            <element signature="e#7955#7956#0" expanded="true" />
+            <element signature="e#11799#11832#0" expanded="true" />
+            <element signature="e#11881#11912#0" expanded="true" />
+            <element signature="e#12149#12632#0" expanded="true" />
+            <element signature="e#12306#12339#0" expanded="true" />
+            <element signature="e#12440#12471#0" expanded="true" />
+            <element signature="e#12621#12622#0" expanded="true" />
           </folding>
         </state>
       </provider>
