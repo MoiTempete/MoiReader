@@ -464,15 +464,15 @@ public class BookActivity extends Activity implements OnSeekBarChangeListener,
 
             // 进度跳转确认
             case R.id.ib_confirm_progress:
-                int markBegin = pagefactory.getM_mbBufLen() * seekBar4.getProgress() / 100;
-                if (markBegin > 0) {
+                begin = pagefactory.getM_mbBufLen() * seekBar4.getProgress() / 100;
+                if (begin > 0) {
                     try {
                         pagefactory.nextPage();
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
-                    pagefactory.setM_mbBufEnd(markBegin);
-                    pagefactory.setM_mbBufBegin(markBegin);
+                    pagefactory.setM_mbBufEnd(begin);
+                    pagefactory.setM_mbBufBegin(begin);
                     pagefactory.onDraw(mNextPageCanvas);
                     mPageWidget.setBitmaps(mCurPageBitmap,
                             mNextPageBitmap);
@@ -503,6 +503,7 @@ public class BookActivity extends Activity implements OnSeekBarChangeListener,
             } else {
                 mToolpop.showAtLocation(mPageWidget, Gravity.BOTTOM, 0,
                         width * 45 / 320);
+                topBar.setVisibility(View.VISIBLE);
                 // Font settings
                 if (a == 1) {
                     mToolpop1.showAtLocation(mPageWidget, Gravity.BOTTOM, 0,
@@ -562,6 +563,7 @@ public class BookActivity extends Activity implements OnSeekBarChangeListener,
             }
             mToolpop.showAtLocation(mPageWidget, Gravity.BOTTOM, 0,
                     width * 45 / 320);
+            topBar.setVisibility(View.VISIBLE);
             // 点击字体按钮
             if (a == 1) {
                 mToolpop1.showAtLocation(mPageWidget, Gravity.BOTTOM, 0,
@@ -670,6 +672,7 @@ public class BookActivity extends Activity implements OnSeekBarChangeListener,
         editor.putInt("light", light);
         editor.putBoolean("night", isNight);
         editor.putInt("size", size);
+        editor.putInt(filepath + "begin", begin);
         editor.commit();
     }
 
