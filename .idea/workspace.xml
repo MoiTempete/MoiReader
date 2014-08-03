@@ -76,98 +76,29 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="BookActivity.java" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="BookActivity.java" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/com/shixforever/reader/activity/BookActivity.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="449" column="36" selection-start="16570" selection-end="16570" vertical-scroll-proportion="0.0" vertical-offset="8276" max-vertical-offset="12806">
+            <state line="480" column="17" selection-start="17162" selection-end="17162" vertical-scroll-proportion="-0.03245436" vertical-offset="9136" max-vertical-offset="13072">
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#5628#8090#0" expanded="true" />
-                <element signature="e#8079#8080#0" expanded="true" />
-                <element signature="e#12687#13544#0" expanded="true" />
-                <element signature="e#13045#13078#0" expanded="true" />
-                <element signature="e#13405#13436#0" expanded="true" />
-                <element signature="e#13533#13534#0" expanded="true" />
+                <element signature="e#5505#7967#0" expanded="true" />
+                <element signature="e#7956#7957#0" expanded="true" />
+                <element signature="e#11800#11833#0" expanded="true" />
+                <element signature="e#11882#11913#0" expanded="true" />
+                <element signature="e#12150#12633#0" expanded="true" />
+                <element signature="e#12307#12340#0" expanded="true" />
+                <element signature="e#12441#12472#0" expanded="true" />
+                <element signature="e#12622#12623#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="DBManager.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/com/shixforever/reader/db/DBManager.java">
+      <file leaf-file-name="color.xml" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/res/values/color.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="45" column="52" selection-start="1182" selection-end="1186" vertical-scroll-proportion="0.0" vertical-offset="661" max-vertical-offset="2945">
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="DBHelper.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/com/shixforever/reader/db/DBHelper.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="7" column="13" selection-start="239" selection-end="239" vertical-scroll-proportion="0.0" vertical-offset="192" max-vertical-offset="646">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="DirectoryActivity.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/com/shixforever/reader/activity/DirectoryActivity.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="112" column="66" selection-start="3396" selection-end="3405" vertical-scroll-proportion="0.0" vertical-offset="1978" max-vertical-offset="2603">
-              <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="e#1231#1627#0" expanded="true" />
-                <element signature="e#1616#1617#0" expanded="true" />
-                <element signature="e#1664#1806#0" expanded="true" />
-                <element signature="e#1795#1796#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="mark_item.xml" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/res/layout/mark_item.xml">
-          <provider editor-type-id="android-designer">
-            <state />
-          </provider>
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="25" column="43" selection-start="764" selection-end="764" vertical-scroll-proportion="0.5217391" vertical-offset="247" max-vertical-offset="703">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="BookMark.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/com/shixforever/reader/module/BookMark.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="3" column="18" selection-start="93" selection-end="93" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="266">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="activity_directory.xml" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/res/layout/activity_directory.xml">
-          <provider editor-type-id="android-designer">
-            <state />
-          </provider>
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="91" column="43" selection-start="2824" selection-end="2824" vertical-scroll-proportion="-14.266666" vertical-offset="1301" max-vertical-offset="1995">
-              <folding>
-                <element signature="e#789#807#0" expanded="true" />
-                <element signature="e#989#1016#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="strings.xml" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/res/values/strings.xml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="9" column="18" selection-start="322" selection-end="322" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="399">
+            <state line="7" column="17" selection-start="295" selection-end="295" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="323">
               <folding />
             </state>
           </provider>
@@ -176,9 +107,15 @@
       <file leaf-file-name="BookPageFactory.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/com/shixforever/reader/activity/BookPageFactory.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="413" column="51" selection-start="8934" selection-end="8934" vertical-scroll-proportion="0.0" vertical-offset="7021" max-vertical-offset="7771">
+            <state line="22" column="58" selection-start="654" selection-end="654" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="8075">
               <folding>
-                <element signature="e#896#904#0" expanded="true" />
+                <element signature="e#983#991#0" expanded="true" />
+                <element signature="e#8640#8641#0" expanded="true" />
+                <element signature="e#8679#8680#0" expanded="true" />
+                <element signature="e#9100#9101#0" expanded="true" />
+                <element signature="e#9135#9136#0" expanded="true" />
+                <element signature="e#9167#9168#0" expanded="true" />
+                <element signature="e#9191#9192#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -225,7 +162,6 @@
         <option value="$PROJECT_DIR$/res/values/strings.xml" />
         <option value="$PROJECT_DIR$/res/layout/tool22.xml" />
         <option value="$PROJECT_DIR$/res/layout/main.xml" />
-        <option value="$PROJECT_DIR$/res/layout/tool44.xml" />
         <option value="$PROJECT_DIR$/src/com/shixforever/reader/module/BookMark.java" />
         <option value="$PROJECT_DIR$/res/drawable/back_selector.xml" />
         <option value="$PROJECT_DIR$/res/drawable/ib_mark_selector.xml" />
@@ -236,11 +172,12 @@
         <option value="$PROJECT_DIR$/res/layout/bookpop.xml" />
         <option value="$PROJECT_DIR$/AndroidManifest.xml" />
         <option value="$PROJECT_DIR$/src/com/shixforever/reader/db/DBManager.java" />
-        <option value="$PROJECT_DIR$/src/com/shixforever/reader/activity/BookPageFactory.java" />
         <option value="$PROJECT_DIR$/res/layout/activity_directory.xml" />
         <option value="$PROJECT_DIR$/src/com/shixforever/reader/activity/DirectoryActivity.java" />
-        <option value="$PROJECT_DIR$/src/com/shixforever/reader/activity/BookActivity.java" />
         <option value="$PROJECT_DIR$/res/layout/mark_item.xml" />
+        <option value="$PROJECT_DIR$/res/layout/tool44.xml" />
+        <option value="$PROJECT_DIR$/src/com/shixforever/reader/activity/BookPageFactory.java" />
+        <option value="$PROJECT_DIR$/src/com/shixforever/reader/activity/BookActivity.java" />
       </list>
     </option>
   </component>
@@ -370,24 +307,6 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="values" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="android_reader-master" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="MoiReader" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="res" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="layout" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -631,7 +550,7 @@
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.25431034" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.25" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3290653" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
@@ -658,16 +577,6 @@
     <breakpoint-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/res/layout/local_list_item.xml">
-      <provider editor-type-id="android-designer">
-        <state />
-      </provider>
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="6" column="33" selection-start="302" selection-end="302" vertical-scroll-proportion="-3.8" vertical-offset="0" max-vertical-offset="665">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/com/shixforever/reader/view/PageWidget.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="573" column="14" selection-start="17652" selection-end="17652" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="10887">
@@ -869,16 +778,6 @@
         <state />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/res/layout/tool44.xml">
-      <provider editor-type-id="android-designer">
-        <state />
-      </provider>
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="14" column="40" selection-start="572" selection-end="572" vertical-scroll-proportion="-8.866667" vertical-offset="0" max-vertical-offset="1064">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/res/drawable/ib_back_selector.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state line="9" column="51" selection-start="0" selection-end="336" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="323">
@@ -925,13 +824,6 @@
     <entry file="file://$USER_HOME$/Downloads/adt-bundle-mac-x86_64-20130729/sdk/source-code/android-18/android/widget/PopupWindow.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="809" column="16" selection-start="28009" selection-end="28009" vertical-scroll-proportion="0.0" vertical-offset="13283" max-vertical-offset="29032">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/res/values/color.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="11" column="0" selection-start="433" selection-end="433" vertical-scroll-proportion="0.4239351" vertical-offset="0" max-vertical-offset="493">
           <folding />
         </state>
       </provider>
@@ -1021,15 +913,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/shixforever/reader/activity/BookPageFactory.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="413" column="51" selection-start="8934" selection-end="8934" vertical-scroll-proportion="0.0" vertical-offset="7021" max-vertical-offset="7771">
-          <folding>
-            <element signature="e#896#904#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/res/layout/activity_directory.xml">
       <provider editor-type-id="android-designer">
         <state />
@@ -1047,21 +930,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state line="3" column="18" selection-start="93" selection-end="93" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="266">
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/shixforever/reader/activity/BookActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="449" column="36" selection-start="16570" selection-end="16570" vertical-scroll-proportion="0.0" vertical-offset="8276" max-vertical-offset="12806">
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#5628#8090#0" expanded="true" />
-            <element signature="e#8079#8080#0" expanded="true" />
-            <element signature="e#12687#13544#0" expanded="true" />
-            <element signature="e#13045#13078#0" expanded="true" />
-            <element signature="e#13405#13436#0" expanded="true" />
-            <element signature="e#13533#13534#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1083,8 +951,64 @@
         <state />
       </provider>
       <provider selected="true" editor-type-id="text-editor">
-        <state line="25" column="43" selection-start="764" selection-end="764" vertical-scroll-proportion="0.5217391" vertical-offset="247" max-vertical-offset="703">
+        <state line="25" column="43" selection-start="764" selection-end="764" vertical-scroll-proportion="-7.6" vertical-offset="247" max-vertical-offset="703">
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/Downloads/adt-bundle-mac-x86_64-20130729/sdk/source-code/android-18/java/io/File.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="728" column="16" selection-start="26386" selection-end="26386" vertical-scroll-proportion="0.0" vertical-offset="13036" max-vertical-offset="22002">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/res/layout/tool44.xml">
+      <provider editor-type-id="android-designer">
+        <state />
+      </provider>
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="40" column="29" selection-start="1370" selection-end="1388" vertical-scroll-proportion="0.96976244" vertical-offset="311" max-vertical-offset="1083">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/res/values/color.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="7" column="17" selection-start="295" selection-end="295" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="323">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/shixforever/reader/activity/BookPageFactory.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="22" column="58" selection-start="654" selection-end="654" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="8075">
+          <folding>
+            <element signature="e#983#991#0" expanded="true" />
+            <element signature="e#8640#8641#0" expanded="true" />
+            <element signature="e#8679#8680#0" expanded="true" />
+            <element signature="e#9100#9101#0" expanded="true" />
+            <element signature="e#9135#9136#0" expanded="true" />
+            <element signature="e#9167#9168#0" expanded="true" />
+            <element signature="e#9191#9192#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/shixforever/reader/activity/BookActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="480" column="17" selection-start="17162" selection-end="17162" vertical-scroll-proportion="-0.03245436" vertical-offset="9136" max-vertical-offset="13072">
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#5505#7967#0" expanded="true" />
+            <element signature="e#7956#7957#0" expanded="true" />
+            <element signature="e#11800#11833#0" expanded="true" />
+            <element signature="e#11882#11913#0" expanded="true" />
+            <element signature="e#12150#12633#0" expanded="true" />
+            <element signature="e#12307#12340#0" expanded="true" />
+            <element signature="e#12441#12472#0" expanded="true" />
+            <element signature="e#12622#12623#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

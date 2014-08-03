@@ -27,7 +27,7 @@
     </SeekBar>
 
     <ImageButton
-        android:id="@+id/imageBtn4_1"
+        android:id="@+id/ib_confirm_progress"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="30dip"
@@ -38,7 +38,7 @@
     </ImageButton>
 
     <ImageButton
-        android:id="@+id/imageBtn4_2"
+        android:id="@+id/ib_cancel_progress"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="180dip"

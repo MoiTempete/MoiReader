@@ -13,13 +13,14 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
-import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Paint.Align;
 
 public class BookPageFactory
 {
 
+    private static final int TEXT_COLOR_DAY = 0xFF562A16;
+    private static final int TEXT_COLOR_NIGHT = 0xFF282828;
 	private File book_file = null;
 	private MappedByteBuffer m_mbBuf = null;
 	private int m_mbBufLen = 0;
@@ -35,10 +36,8 @@ public class BookPageFactory
 	public int m_fontSize;// 字体大小
 	SharedPreferences preferences;
 	SharedPreferences.Editor edit;
-	private int m_textColor_day = 0xFF562A16;
-	private int m_backColor_day = 0xffff9e85;
-    private int m_textColor_night = 0xFF000000;
-    private int m_backColor_night = 0xFF282828;
+	private int m_textColor = 0xFF562A16;
+	private int m_backColor = 0xffff9e85;
 	private int marginWidth = 20;
 	private int marginHeight = 40;
 
@@ -65,7 +64,7 @@ public class BookPageFactory
 		m_fontSize = size;
 		// -----------------------------------------------
 		mPaint.setTextSize(m_fontSize);
-		mPaint.setColor(m_textColor_day);
+		mPaint.setColor(m_textColor);
 		mVisibleWidth = mWidth - marginWidth * 2;
 		mVisibleHeight = mHeight - marginHeight * 2;
 		mLineCount = (int) (mVisibleHeight / m_fontSize); 
@@ -358,7 +357,7 @@ public class BookPageFactory
 		if (m_lines.size() > 0)
 		{
 			if (m_book_bg == null)
-				c.drawColor(m_backColor_day);
+				c.drawColor(m_backColor);
 			else
 				c.drawBitmap(m_book_bg, 0, 0, null);
 			int y = marginHeight;
@@ -433,4 +432,11 @@ public class BookPageFactory
 		m_lines.clear();
 		m_lines = pageDown(true);
 	}
+    public void setTextColor(boolean isNight) {
+        if (isNight) {
+            m_textColor = TEXT_COLOR_NIGHT;
+        } else {
+            m_textColor = TEXT_COLOR_DAY;
+        }
+    }
 }

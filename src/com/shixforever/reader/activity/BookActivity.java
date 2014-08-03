@@ -14,9 +14,7 @@ import com.shixforever.reader.utils.FusionField;
 import com.shixforever.reader.view.PageWidget;
 import com.shixforever.reader.db.DBManager;
 import android.app.Activity;
-import android.app.AlertDialog;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.SharedPreferences;
 import android.content.pm.ActivityInfo;
 import android.graphics.Bitmap;
@@ -93,8 +91,6 @@ public class BookActivity extends Activity implements OnSeekBarChangeListener,
     private Boolean show = false;// popwindow是否显示
 
     private int a = 0, b = 0;// 记录toolpop的位置
-
-    private ImageButton imageBtn4_1, imageBtn4_2;
 
     private boolean isNight; // 亮度模式,白天和晚上
 
@@ -333,15 +329,11 @@ public class BookActivity extends Activity implements OnSeekBarChangeListener,
         TextView btnTextSize = (TextView) popupwindwow.findViewById(R.id.btn_text_size);
         TextView btnBrightness = (TextView) popupwindwow.findViewById(R.id.btn_brightness);
         final TextView btnNight = (TextView) popupwindwow.findViewById(R.id.btn_night);
-        //        if (isNight) {
-        //            btnNight.setCompoundDrawables(null, getResources().getDrawable(R.drawable.btn_night), null, null);
-        //            btnNight.setCompoundDrawablePadding(6);
-        //            btnNight.setText(getString(R.string.bookpop_night));
-        //        } else {
-        //            btnNight.setCompoundDrawables(null, getResources().getDrawable(R.drawable.btn_day), null, null);
-        //            btnNight.setCompoundDrawablePadding(6);
-        //            btnNight.setText(getString(R.string.bookpop_day));
-        //        }
+        if (isNight) {
+            btnNight.setText(getString(R.string.bookpop_night));
+        } else {
+            btnNight.setText(getString(R.string.bookpop_day));
+        }
 
         btnDirectory.setOnClickListener(this);
         btnProgress.setOnClickListener(this);
@@ -351,18 +343,14 @@ public class BookActivity extends Activity implements OnSeekBarChangeListener,
             @Override
             public void onClick(View v) {
                 if (!isNight) {
-                    btnNight.setCompoundDrawables(null, getResources().getDrawable(R.drawable.btn_night), null, null);
-                    //                    btnNight.setCompoundDrawablePadding(6);
                     btnNight.setText(getString(R.string.bookpop_night));
                     isNight = true;
-                    //TODO
                 } else {
-                    btnNight.setCompoundDrawables(null, getResources().getDrawable(R.drawable.btn_day), null, null);
-                    //                    btnNight.setCompoundDrawablePadding(6);
                     btnNight.setText(getString(R.string.bookpop_day));
                     isNight = false;
-                    //TODO
                 }
+                pagefactory.setTextColor(isNight);
+                setReadBg();
             }
         });
     }
@@ -391,6 +379,9 @@ public class BookActivity extends Activity implements OnSeekBarChangeListener,
                 lp.screenBrightness = (float) tmpInt * (1f / 255f);
                 BookActivity.this.getWindow().setAttributes(lp);
                 light = tmpInt;
+                break;
+            case R.id.seekBar4:
+                markEdit4.setText("" + seekBar4.getProgress() + "%");
                 break;
             default:
                 break;
@@ -448,8 +439,6 @@ public class BookActivity extends Activity implements OnSeekBarChangeListener,
 
             // 目录
             case R.id.btn_directory:
-                //                a = 3;
-                //                setToolPop(a);
                 Intent intent = new Intent(this, DirectoryActivity.class);
                 intent.putExtra(DIR_NAME, filepath);
                 startActivityForResult(intent, DIR_CODE);
@@ -466,10 +455,35 @@ public class BookActivity extends Activity implements OnSeekBarChangeListener,
                 a = 1;
                 setToolPop(a);
                 break;
+
             // 亮度按钮
             case R.id.btn_brightness:
                 a = 2;
                 setToolPop(a);
+                break;
+
+            // 进度跳转确认
+            case R.id.ib_confirm_progress:
+                int markBegin = pagefactory.getM_mbBufLen() * seekBar4.getProgress() / 100;
+                if (markBegin > 0) {
+                    try {
+                        pagefactory.nextPage();
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                    pagefactory.setM_mbBufEnd(markBegin);
+                    pagefactory.setM_mbBufBegin(markBegin);
+                    pagefactory.onDraw(mNextPageCanvas);
+                    mPageWidget.setBitmaps(mCurPageBitmap,
+                            mNextPageBitmap);
+                    mPageWidget.invalidate();
+                    postInvalidateUI();
+                }
+                break;
+
+            // 进度跳转取消
+            case R.id.ib_cancel_progress:
+                mToolpop4.dismiss();
                 break;
 
             default:
@@ -521,10 +535,10 @@ public class BookActivity extends Activity implements OnSeekBarChangeListener,
                 if (a == 4) {
                     mToolpop4.showAtLocation(mPageWidget, Gravity.BOTTOM, 0,
                             width * 45 / 320);
-                    imageBtn4_1 = (ImageButton) toolpop4
-                            .findViewById(R.id.imageBtn4_1);
-                    imageBtn4_2 = (ImageButton) toolpop4
-                            .findViewById(R.id.imageBtn4_2);
+                    ImageButton imageBtn4_1 = (ImageButton) toolpop4
+                            .findViewById(R.id.ib_confirm_progress);
+                    ImageButton imageBtn4_2 = (ImageButton) toolpop4
+                            .findViewById(R.id.ib_cancel_progress);
                     seekBar4 = (SeekBar) toolpop4.findViewById(R.id.seekBar4);
                     markEdit4 = (TextView) toolpop4
                             .findViewById(R.id.markEdit4);
@@ -589,10 +603,10 @@ public class BookActivity extends Activity implements OnSeekBarChangeListener,
             if (a == 4) {
                 mToolpop4.showAtLocation(mPageWidget, Gravity.BOTTOM, 0,
                         width * 45 / 320);
-                imageBtn4_1 = (ImageButton) toolpop4
-                        .findViewById(R.id.imageBtn4_1);
-                imageBtn4_2 = (ImageButton) toolpop4
-                        .findViewById(R.id.imageBtn4_2);
+                ImageButton imageBtn4_1 = (ImageButton) toolpop4
+                        .findViewById(R.id.ib_confirm_progress);
+                ImageButton imageBtn4_2 = (ImageButton) toolpop4
+                        .findViewById(R.id.ib_cancel_progress);
                 seekBar4 = (SeekBar) toolpop4.findViewById(R.id.seekBar4);
                 markEdit4 = (TextView) toolpop4.findViewById(R.id.markEdit4);
                 // jumpPage = sp.getInt(bookPath + "jumpPage", 1);
