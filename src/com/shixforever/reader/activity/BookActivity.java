@@ -388,7 +388,12 @@ public class BookActivity extends Activity implements OnSeekBarChangeListener,
                 }
                 pagefactory.setTextColor(isNight);
                 setReadBg();
-                postInvalidateUI();
+
+                mPageWidget.abortAnimation();
+                pagefactory.onDraw(mCurPageCanvas);
+                pagefactory.onDraw(mNextPageCanvas);
+                mPageWidget.setBitmaps(mCurPageBitmap, mNextPageBitmap);
+                mPageWidget.postInvalidate();
             }
         });
     }
