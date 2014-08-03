@@ -6,6 +6,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 import android.content.Intent;
+import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import com.shixforever.reader.R;
 import com.shixforever.reader.data.BookFile;
@@ -156,8 +157,6 @@ public class BookActivity extends Activity implements OnSeekBarChangeListener,
         initTopBar();
 
         // 阅读背景
-//        pagefactory.setBgBitmap(BitmapFactory.decodeResource(
-//                this.getResources(), R.color.bg_read_day));
         setReadBg();
 
         try {
@@ -172,10 +171,6 @@ public class BookActivity extends Activity implements OnSeekBarChangeListener,
             e1.printStackTrace();
             Toast.makeText(this, "no find file", Toast.LENGTH_SHORT).show();
         }
-
-//        pagefactory.setBgBitmap(BitmapFactory.decodeResource(
-//                this.getResources(), R.color.bg_read_day));
-        setReadBg();
 
         mPageWidget.setBitmaps(mCurPageBitmap, mCurPageBitmap);
 
@@ -632,10 +627,10 @@ public class BookActivity extends Activity implements OnSeekBarChangeListener,
     private void setReadBg() {
         if (isNight) {
             pagefactory.setBgBitmap(BitmapFactory.decodeResource(
-                    this.getResources(), R.color.bg_read_night));
+                    this.getResources(), R.drawable.bg_book_night));
         } else {
             pagefactory.setBgBitmap(BitmapFactory.decodeResource(
-                    this.getResources(), R.color.bg_read_day));
+                    this.getResources(), R.drawable.bg_book_day));
         }
     }
 

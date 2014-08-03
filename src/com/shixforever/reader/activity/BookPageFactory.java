@@ -15,10 +15,11 @@ import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.Paint.Align;
+import android.util.Log;
 
 public class BookPageFactory
 {
-
+    private static final String TAG = "BookPageFactory";
     private static final int TEXT_COLOR_DAY = 0xFF562A16;
     private static final int TEXT_COLOR_NIGHT = 0xFF282828;
 	private File book_file = null;
@@ -356,10 +357,13 @@ public class BookPageFactory
 			m_lines = pageDown(false);
 		if (m_lines.size() > 0)
 		{
-			if (m_book_bg == null)
+			if (m_book_bg == null) {
 				c.drawColor(m_backColor);
-			else
+                Log.e(TAG, "m_backColor");
+            }else {
 				c.drawBitmap(m_book_bg, 0, 0, null);
+                Log.e(TAG, "m_book_bg");
+            }
 			int y = marginHeight;
 			for (String strLine : m_lines)
 			{
@@ -376,6 +380,11 @@ public class BookPageFactory
 
 	public void setBgBitmap(Bitmap BG)
 	{
+        if(BG == null ) {
+            Log.e(TAG, "BG IS NULL");
+        }else {
+            Log.e(TAG, "BG IS NOT NULL");
+        }
 		m_book_bg = BG;
 	}
 
