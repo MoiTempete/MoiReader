@@ -5,16 +5,14 @@ import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
-
 import android.content.Intent;
-
+import android.graphics.drawable.Drawable;
 import com.shixforever.reader.R;
 import com.shixforever.reader.data.BookFile;
 import com.shixforever.reader.module.BookMark;
 import com.shixforever.reader.utils.FusionField;
 import com.shixforever.reader.view.PageWidget;
 import com.shixforever.reader.db.DBManager;
-
 import android.app.Activity;
 import android.content.Context;
 import android.content.SharedPreferences;
@@ -23,9 +21,7 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.os.Bundle;
-import android.provider.Settings;
 import android.util.DisplayMetrics;
-import android.util.Log;
 import android.view.Gravity;
 import android.view.KeyEvent;
 import android.view.MotionEvent;
@@ -160,8 +156,9 @@ public class BookActivity extends Activity implements OnSeekBarChangeListener,
         initTopBar();
 
         // 阅读背景
-        pagefactory.setBgBitmap(BitmapFactory.decodeResource(
-                this.getResources(), R.color.bg_read_day));
+//        pagefactory.setBgBitmap(BitmapFactory.decodeResource(
+//                this.getResources(), R.color.bg_read_day));
+        setReadBg();
 
         try {
             if (bookFile.flag.equals("1")) {
@@ -176,8 +173,9 @@ public class BookActivity extends Activity implements OnSeekBarChangeListener,
             Toast.makeText(this, "no find file", Toast.LENGTH_SHORT).show();
         }
 
-        pagefactory.setBgBitmap(BitmapFactory.decodeResource(
-                this.getResources(), R.color.bg_read_day));
+//        pagefactory.setBgBitmap(BitmapFactory.decodeResource(
+//                this.getResources(), R.color.bg_read_day));
+        setReadBg();
 
         mPageWidget.setBitmaps(mCurPageBitmap, mCurPageBitmap);
 
@@ -360,10 +358,16 @@ public class BookActivity extends Activity implements OnSeekBarChangeListener,
         TextView btnTextSize = (TextView) popupwindwow.findViewById(R.id.btn_text_size);
         TextView btnBrightness = (TextView) popupwindwow.findViewById(R.id.btn_brightness);
         final TextView btnNight = (TextView) popupwindwow.findViewById(R.id.btn_night);
+        final Drawable drawableNight = getResources().getDrawable(R.drawable.btn_night);
+//        drawableNight.setBounds(0,0,20,20);
+        final Drawable drawableDay =  getResources().getDrawable(R.drawable.btn_day);
+//        drawableDay.setBounds(0,0,20,20);
         if (isNight) {
             btnNight.setText(getString(R.string.bookpop_night));
+            btnNight.setCompoundDrawablesWithIntrinsicBounds(null, drawableNight, null, null);
         } else {
             btnNight.setText(getString(R.string.bookpop_day));
+            btnNight.setCompoundDrawablesWithIntrinsicBounds(null, drawableDay, null, null);
         }
 
         btnDirectory.setOnClickListener(this);
@@ -375,13 +379,16 @@ public class BookActivity extends Activity implements OnSeekBarChangeListener,
             public void onClick(View v) {
                 if (!isNight) {
                     btnNight.setText(getString(R.string.bookpop_night));
+                    btnNight.setCompoundDrawablesWithIntrinsicBounds(null, drawableNight, null, null);
                     isNight = true;
                 } else {
                     btnNight.setText(getString(R.string.bookpop_day));
+                    btnNight.setCompoundDrawablesWithIntrinsicBounds(null, drawableDay, null, null);
                     isNight = false;
                 }
                 pagefactory.setTextColor(isNight);
                 setReadBg();
+                postInvalidateUI();
             }
         });
     }
@@ -501,33 +508,6 @@ public class BookActivity extends Activity implements OnSeekBarChangeListener,
                 a = 2;
                 setToolPop(a);
                 break;
-
-            // 进度跳转确认
-//            case R.id.ib_confirm_progress:
-//            	if (mPopupWindow.isShowing()) {
-//            		mPopupWindow.dismiss();
-//            	}
-//                begin = pagefactory.getM_mbBufLen() * seekBar4.getProgress() / 100;
-//                if (begin > 0) {
-//                    try {
-//                        pagefactory.nextPage();
-//                    } catch (IOException e) {
-//                        e.printStackTrace();
-//                    }
-//                    pagefactory.setM_mbBufEnd(begin);
-//                    pagefactory.setM_mbBufBegin(begin);
-//                    pagefactory.onDraw(mNextPageCanvas);
-//                    mPageWidget.setBitmaps(mCurPageBitmap,
-//                            mNextPageBitmap);
-//                    mPageWidget.invalidate();
-//                    postInvalidateUI();
-//                }
-//                break;
-
-            // 进度跳转取消
-//            case R.id.ib_cancel_progress:
-//                mToolpop4.dismiss();
-//                break;
 
             case R.id.iv_font_discre:
             	mCurrentFontSize -= FONT_STEP;

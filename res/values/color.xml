@@ -8,7 +8,6 @@
 	<color name="bg_read_night">#FF000000</color>
 	<color name="txt_read_night">#FF282828</color>
 	<color name="bg_top_bar">#FFEC6400</color>
-	
-	<color name="dark_grey">#FF999999</color>	
+	<color name="dark_grey">#FF999999</color>
 	<color name="dark_orange">#FFff4500</color>		
 </resources>

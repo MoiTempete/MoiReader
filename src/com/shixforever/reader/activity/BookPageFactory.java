@@ -438,5 +438,6 @@ public class BookPageFactory
         } else {
             m_textColor = TEXT_COLOR_DAY;
         }
+        mPaint.setColor(m_textColor);
     }
 }
