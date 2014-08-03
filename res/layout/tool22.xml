@@ -5,15 +5,44 @@
     android:layout_height="wrap_content"
     android:layout_marginLeft="10dip"
     android:layout_marginRight="10dip"
-    android:background="@drawable/tool22" >
+    android:background="@color/bg_tool_bar" >
+	<ImageView 
+	    android:id="@+id/iv_brightness_discre"
+	    android:layout_width="wrap_content"
+	    android:layout_height="wrap_content"
+	    android:layout_marginLeft="30dp"
+	    android:contentDescription="@string/app_name"
+	    android:layout_alignParentLeft="true"
+	    android:layout_centerVertical="true"
+	    android:scaleType="centerInside"
+	    android:src="@drawable/brightness_discre"/>
 
     <SeekBar
         android:id="@+id/seekBar2"
-        android:layout_width="180dip"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="103dip"
+        android:layout_toRightOf="@+id/iv_brightness_discre"
+        android:layout_toLeftOf="@+id/iv_brightness_incre"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:layout_centerVertical="true"
+        android:thumb="@drawable/seekbar_thumb"
+        android:thumbOffset="5dp"
+        android:minHeight="10dp"
+        android:maxHeight="10dp"
+        android:progressDrawable="@drawable/seekbar_progress_drawable"
         android:max="10" >
     </SeekBar>
-
+	<ImageView 
+	    android:id="@+id/iv_brightness_incre"	    
+	    android:layout_width="wrap_content"
+	    android:layout_height="wrap_content"
+	    android:layout_marginRight="30dp"
+	    android:contentDescription="@string/app_name"
+	    android:layout_alignParentRight="true"
+	    android:layout_centerVertical="true"
+	    android:scaleType="centerInside"
+	    android:src="@drawable/brightness_incre"/>
 </RelativeLayout>

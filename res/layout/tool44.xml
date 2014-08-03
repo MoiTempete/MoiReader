@@ -5,47 +5,33 @@
     android:layout_height="wrap_content"
     android:layout_marginLeft="10dip"
     android:layout_marginRight="10dip"
-    android:background="@drawable/tool44" >
+    android:background="@color/bg_tool_bar" >
 
     <TextView
         android:id="@+id/markEdit4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="20dip"
+        android:gravity="center"
         android:textSize="20sp" >
     </TextView>
 
     <SeekBar
         android:id="@+id/seekBar4"
-        android:layout_width="270dip"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="70dip"
-        android:gravity="center"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:layout_centerInParent="true"
+        android:thumb="@drawable/seekbar_thumb"
+        android:thumbOffset="5dp"
+        android:minHeight="10dp"
+        android:maxHeight="10dp"
+        android:progressDrawable="@drawable/seekbar_progress_drawable"
         android:max="100" >
     </SeekBar>
 
-    <ImageButton
-        android:id="@+id/ib_confirm_progress"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="30dip"
-        android:layout_marginTop="120dip"
-        android:background="@android:color/transparent"
-        android:contentDescription="@string/app_name"
-        android:src="@drawable/tool4_1" >
-    </ImageButton>
-
-    <ImageButton
-        android:id="@+id/ib_cancel_progress"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="180dip"
-        android:layout_marginTop="120dip"
-        android:background="@android:color/transparent"
-        android:contentDescription="@string/app_name"
-        android:src="@drawable/tool4_2" >
-    </ImageButton>
 
 </RelativeLayout>
