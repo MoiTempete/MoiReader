@@ -12,13 +12,12 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
 public class DBManager {
-	private DBHelper helper;
-	private SQLiteDatabase db;
+    private SQLiteDatabase db;
 	private static final String DATABASE_NAME = "wow.db";
 	private static final int DATABASE_VERSION = 1;
 
 	public DBManager(Context context) {
-		helper = new DBHelper(context, DATABASE_NAME, null, DATABASE_VERSION);
+        DBHelper helper = new DBHelper(context, DATABASE_NAME, null, DATABASE_VERSION);
 		db = helper.getWritableDatabase();
 	}
 
@@ -129,14 +128,12 @@ public class DBManager {
 	 * @return Cursor
 	 */
 	public Cursor queryTheCursor(String table, String name) {
-		Cursor c = db.rawQuery("SELECT * FROM " + table + " where name ='"
-				+ name + "'", null);
-		return c;
+        return db.rawQuery("SELECT * FROM " + table + " where name ='"
+                + name + "'", null);
 	}
 
 	public Cursor queryTheCursor(String table) {
-		Cursor c = db.rawQuery("SELECT * FROM " + table, null);
-		return c;
+        return db.rawQuery("SELECT * FROM " + table, null);
 	}
 
 	/**

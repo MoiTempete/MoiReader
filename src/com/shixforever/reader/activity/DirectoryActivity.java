@@ -18,9 +18,9 @@ public class DirectoryActivity extends Activity {
 
     private List<BookMark> bookmarks;
 
-    private TextView mBookName, mAuthor, mEmptyView;
+    private TextView mBookName;
 
-    private ImageButton mBack;
+    private TextView mEmptyView;
 
     private ListView mListView;
 
@@ -34,11 +34,11 @@ public class DirectoryActivity extends Activity {
 
         mgr = new DBManager(this);
         mBookName = (TextView) findViewById(R.id.tv_name_dir);
-        mAuthor = (TextView) findViewById(R.id.tv_author_dir);
+        TextView mAuthor = (TextView) findViewById(R.id.tv_author_dir);
         mAuthor.setVisibility(View.GONE);
         mEmptyView = (TextView) findViewById(R.id.empty_view_dir);
         mListView = (ListView) findViewById(R.id.lv_dir);
-        mBack = (ImageButton) findViewById(R.id.ib_back_dir);
+        ImageButton mBack = (ImageButton) findViewById(R.id.ib_back_dir);
 
         mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override

@@ -101,11 +101,8 @@ public class PageWidget extends View {
 			mCornerY = 0;
 		else
 			mCornerY = mScreenHeight;
-		if ((mCornerX == 0 && mCornerY == mScreenHeight)
-				|| (mCornerX == mScreenWidth && mCornerY == 0))
-			mIsRTandLB = true;
-		else
-			mIsRTandLB = false;
+        mIsRTandLB = (mCornerX == 0 && mCornerY == mScreenHeight)
+                || (mCornerX == mScreenWidth && mCornerY == 0);
 	}
 
 	public boolean doTouchEvent(MotionEvent event) {
@@ -118,21 +115,12 @@ public class PageWidget extends View {
 		if (event.getAction() == MotionEvent.ACTION_DOWN) {
 			mTouch.x = event.getX();
 			mTouch.y = event.getY();
-			// calcCornerXY(mTouch.x, mTouch.y);
-			// this.postInvalidate();
 		}
 		if (event.getAction() == MotionEvent.ACTION_UP) {
-			// if (canDragOver()) {
-			// startAnimation(1200);
-			// } else {
-			// mTouch.x = mCornerX - 10f;
-			// mTouch.y = mCornerY - 10f;
-			// }
 			// 直接画出动画而不使用时上面的条件判断
 			startAnimation(1200);
 			this.postInvalidate();
 		}
-		// return super.onTouchEvent(event);
 		return true;
 	}
 
@@ -168,10 +156,6 @@ public class PageWidget extends View {
 
 		mBezierControl2.y = mMiddleY - (mCornerX - mMiddleX)
 				* (mCornerX - mMiddleX) / (mCornerY - mMiddleY);
-		// //下广告
-		// if (mBezierControl2.y >= mScreenHeight) {
-		// mBezierControl2.y=mScreenHeight;
-		// }
 
 		mBezierStart1.x = mBezierControl1.x - (mCornerX - mBezierControl1.x)
 				/ 2;
@@ -202,12 +186,6 @@ public class PageWidget extends View {
 				mBezierControl2.x = mCornerX;
 				mBezierControl2.y = mMiddleY - (mCornerX - mMiddleX)
 						* (mCornerX - mMiddleX) / (mCornerY - mMiddleY);
-				// Log.i("hmg", "mTouchX --> " + mTouch.x + "  mTouchY-->  "
-				// + mTouch.y);
-				// Log.i("hmg", "mBezierControl1.x--  " + mBezierControl1.x
-				// + "  mBezierControl1.y -- " + mBezierControl1.y);
-				// Log.i("hmg", "mBezierControl2.x -- " + mBezierControl2.x
-				// + "  mBezierControl2.y -- " + mBezierControl2.y);
 				mBezierStart1.x = mBezierControl1.x
 						- (mCornerX - mBezierControl1.x) / 2;
 			}
@@ -215,9 +193,6 @@ public class PageWidget extends View {
 		mBezierStart2.x = mCornerX;
 		mBezierStart2.y = mBezierControl2.y - (mCornerY - mBezierControl2.y)
 				/ 2;
-//		if (mBezierStart2.y >= mScreenHeight) {
-//			mBezierStart2.y >= mScreenHeight
-//		}
 		mTouchToCornerDis = (float) Math.hypot((mTouch.x - mCornerX),
 				(mTouch.y - mCornerY));
 
@@ -225,11 +200,6 @@ public class PageWidget extends View {
 				mBezierStart2);
 		mBezierEnd2 = getCross(mTouch, mBezierControl2, mBezierStart1,
 				mBezierStart2);
-
-		// Log.i("hmg", "mBezierEnd1.x  " + mBezierEnd1.x + "  mBezierEnd1.y  "
-		// + mBezierEnd1.y);
-		// Log.i("hmg", "mBezierEnd2.x  " + mBezierEnd2.x + "  mBezierEnd2.y  "
-		// + mBezierEnd2.y);
 
 		/*
 		 * mBeziervertex1.x 推导
@@ -459,8 +429,6 @@ public class PageWidget extends View {
 					(int) (mBezierControl2.x - mMaxLength), leftx,
 					(int) (mBezierControl2.x), rightx);
 
-		// Log.i("hmg", "mBezierControl2.x   " + mBezierControl2.x
-		// + "  mBezierControl2.y  " + mBezierControl2.y);
 		mCurrentPageShadow.draw(canvas);
 		canvas.restore();
 	}
@@ -515,7 +483,6 @@ public class PageWidget extends View {
 		mMatrix.preTranslate(-mBezierControl1.x, -mBezierControl1.y);
 		mMatrix.postTranslate(mBezierControl1.x, mBezierControl1.y);
 		canvas.drawBitmap(bitmap, mMatrix, mPaint);
-		// canvas.drawBitmap(bitmap, mMatrix, null);
 		mPaint.setColorFilter(null);
 		canvas.rotate(mDegrees, mBezierStart1.x, mBezierStart1.y);
 		mFolderShadowDrawable.setBounds(left, (int) mBezierStart1.y, right,

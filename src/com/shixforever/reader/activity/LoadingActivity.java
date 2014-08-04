@@ -38,15 +38,6 @@ public class LoadingActivity extends BaseActivity implements OnClickListener {
 		}
 	};
 
-	// private Thread thread = new Thread()
-	// {
-	// public void run()
-	// {
-	// FileManager.getInstance().copyAllFilesToSDCard(dataManager.getAllFiles(),
-	// copyFiles);
-	// };
-	// };
-
 	private Handler mHandler = new Handler() {
 		public void handleMessage(Message msg) {
 			switch (msg.what) {
@@ -68,7 +59,7 @@ public class LoadingActivity extends BaseActivity implements OnClickListener {
 						Toast.LENGTH_LONG).show();
 				break;
 			}
-		};
+		}
 	};
 
 	private CopyFileListener copyDB = new CopyFileListener() {
@@ -90,12 +81,4 @@ public class LoadingActivity extends BaseActivity implements OnClickListener {
         return android.os.Environment.getExternalStorageState().equals(
                 android.os.Environment.MEDIA_MOUNTED);
 	}
-	// private CopyFileListener copyFiles = new CopyFileListener()
-	// {
-	// @Override
-	// public void onCopyFinish()
-	// {
-	// mHandler.sendEmptyMessage(2);
-	// }
-	// };
 }

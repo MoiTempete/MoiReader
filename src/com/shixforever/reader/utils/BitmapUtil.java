@@ -64,9 +64,8 @@ public class BitmapUtil
 		float h0 = obm.getHeight();
 		float scale = calculateScale(w0, h0, w, h);
 		Bitmap bm = scale(obm, scale);
-		Bitmap nbm = Bitmap.createBitmap(bm, Math.abs(w - bm.getWidth()) / 2,
-				Math.abs(h - bm.getHeight()) / 2, w, h);
-		return nbm;
+        return Bitmap.createBitmap(bm, Math.abs(w - bm.getWidth()) / 2,
+                Math.abs(h - bm.getHeight()) / 2, w, h);
 	}
 
 	public static Bitmap ifNeedRoate(Bitmap bm)

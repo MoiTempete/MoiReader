@@ -24,11 +24,11 @@ public class BookFile implements Serializable {
 	 */
 	public String cover;
 	/** 
-	* @Fields path : 本地路径 
+	* path : 本地路径
 	*/ 
 	public String path;
 	/** 
-	* @Fields flag : 类别 1 为SD卡
+	* flag : 类别 1 为SD卡
 	*/ 
 	public String flag="0";
 	public BookFile() {

@@ -38,10 +38,6 @@ public class BookShelfActivity extends BaseActivity {
 	private String filecatchpath = "/data/data/"
 			+ FusionField.baseActivity.getPackageName() + "/";
 	private boolean isConnected;
-	/**
-	 * 积分墙
-	 */
-	private TextView mTextViewPoints;
 	private boolean nhFlag = false;
 
 	@Override
@@ -54,7 +50,6 @@ public class BookShelfActivity extends BaseActivity {
 		initView();
 		mgr = new DBManager(this);
 		initData();
-		mTextViewPoints = (TextView) findViewById(R.id.tv_points);
 	}
 
 	@Override
