@@ -381,7 +381,6 @@ public class BookActivity extends Activity implements OnSeekBarChangeListener,
                     btnNight.setCompoundDrawablesWithIntrinsicBounds(null, drawableDay, null, null);
                     isNight = false;
                 }
-                pagefactory.setTextColor(isNight);
                 setReadBg();
 
                 mPageWidget.abortAnimation();
@@ -625,6 +624,7 @@ public class BookActivity extends Activity implements OnSeekBarChangeListener,
     }
 
     private void setReadBg() {
+        pagefactory.setTextColor(isNight);
         if (isNight) {
             pagefactory.setBgBitmap(BitmapFactory.decodeResource(
                     this.getResources(), R.drawable.bg_book_night));
