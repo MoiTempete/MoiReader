@@ -82,10 +82,9 @@ public class BookActivity extends Activity implements OnSeekBarChangeListener,
     private String filecatchpath = "/data/data/"
             + FusionField.baseActivity.getPackageName() + "/";
 
-    private PopupWindow mPopupWindow, mToolpop, mToolpop1, mToolpop2,
-            mToolpop3, mToolpop4;
+    private PopupWindow mPopupWindow, mToolpop, mToolpop1, mToolpop2, mToolpop4;
 
-    private View popupwindwow, toolpop, toolpop1, toolpop2, toolpop3, toolpop4, topBar;
+    private View popupwindwow, toolpop, toolpop1, toolpop2, toolpop4, topBar;
 
     private SeekBar seekBar1, seekBar2, seekBar4;
 
@@ -333,9 +332,6 @@ public class BookActivity extends Activity implements OnSeekBarChangeListener,
         toolpop2 = this.getLayoutInflater().inflate(R.layout.tool22, null);//亮度
         mToolpop2 = new PopupWindow(toolpop2, LayoutParams.MATCH_PARENT,
         		subPopUpWindowHeigt);
-        toolpop3 = this.getLayoutInflater().inflate(R.layout.tool33, null);//书签
-        mToolpop3 = new PopupWindow(toolpop3, LayoutParams.MATCH_PARENT,
-        		subPopUpWindowHeigt);
         toolpop4 = this.getLayoutInflater().inflate(R.layout.tool44, null);//进度
         mToolpop4 = new PopupWindow(toolpop4, LayoutParams.MATCH_PARENT,
         		subPopUpWindowHeigt);
@@ -566,16 +562,6 @@ public class BookActivity extends Activity implements OnSeekBarChangeListener,
 			seekBar2.setProgress(light);
 			seekBar2.setOnSeekBarChangeListener(this);
 		}
-		// 点击书签按钮
-		if (a == 3) {
-			mToolpop3.showAtLocation(mPageWidget, Gravity.BOTTOM, 0, 0);
-			ImageButton imageBtn3_1 = (ImageButton) toolpop3
-					.findViewById(R.id.ib_add_mark);
-			ImageButton imageBtn3_2 = (ImageButton) toolpop3
-					.findViewById(R.id.ib_all_mark);
-			imageBtn3_1.setOnClickListener(this);
-			imageBtn3_2.setOnClickListener(this);
-		}
 		// 点击跳转按钮
 		if (a == 4) {
 			mToolpop4.showAtLocation(mPageWidget, Gravity.BOTTOM, 0, 0);
@@ -599,7 +585,6 @@ public class BookActivity extends Activity implements OnSeekBarChangeListener,
         mToolpop.dismiss();
         mToolpop1.dismiss();
         mToolpop2.dismiss();
-        mToolpop3.dismiss();
         mToolpop4.dismiss();
         topBar.setVisibility(View.INVISIBLE);
     }

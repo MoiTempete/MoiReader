@@ -37,7 +37,7 @@
 		android:textSize="20sp"
 		android:textColor="@android:color/white"
 		android:layout_toRightOf="@id/ib_back_top"
-		android:layout_toLeftOf="@id/ib_add_mark"
+		android:layout_toLeftOf="@id/ib_add_mark_top"
 		android:singleLine="true"
 		android:maxLines="1"
 		android:ellipsize="end"
