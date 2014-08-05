@@ -5,5 +5,4 @@ bin/
 gen/
 obj/.classpath
 .settings
-out/
 .idea/
