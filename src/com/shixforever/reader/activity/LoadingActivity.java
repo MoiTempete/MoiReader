@@ -1,11 +1,9 @@
 package com.shixforever.reader.activity;
 
 import java.io.File;
-
 import com.shixforever.reader.R;
 import com.shixforever.reader.manager.CopyFileListener;
 import com.shixforever.reader.manager.FileManager;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
@@ -17,68 +15,68 @@ import android.widget.Toast;
 
 public class LoadingActivity extends BaseActivity implements OnClickListener {
 
-	@Override
-	protected void onCreate(Bundle savedInstanceState) {
-		super.onCreate(savedInstanceState);
-		requestWindowFeature(Window.FEATURE_NO_TITLE);
-		setContentView(R.layout.loading);
-		initView();
-		mHandler.sendEmptyMessage(0);
-	}
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        requestWindowFeature(Window.FEATURE_NO_TITLE);
+        setContentView(R.layout.loading);
+        initView();
+        mHandler.sendEmptyMessage(0);
+    }
 
-	private void initView() {
-	}
+    private void initView() {
+    }
 
-	/**
-	 * 复制线程
-	 */
-	private Thread copyDbThread = new Thread() {
-		public void run() {
-			FileManager.getInstance().moveToSystemDatabaseDir(copyDB);
-		}
-	};
+    /**
+     * 复制线程
+     */
+    private Thread copyDbThread = new Thread() {
+        public void run() {
+            FileManager.getInstance().moveToSystemDatabaseDir(copyDB);
+        }
+    };
 
-	private Handler mHandler = new Handler() {
-		public void handleMessage(Message msg) {
-			switch (msg.what) {
-			case 0:
-				copyDbThread.start();
-				break;
-			case 1:
-				// 判断是否有SD卡
-				if (ExistSDCard()) {
-					File file = new File(FileManager.FILE_SDCARD_PATH);
-					if (!file.exists()) {
-						file.mkdirs();
-					}
-				}
-				startActivity(new Intent(LoadingActivity.this,
-						BookShelfActivity.class));
-				finish();
-				Toast.makeText(LoadingActivity.this, R.string.copy_finish,
-						Toast.LENGTH_LONG).show();
-				break;
-			}
-		}
-	};
+    private Handler mHandler = new Handler() {
+        public void handleMessage(Message msg) {
+            switch (msg.what) {
+                case 0:
+                    copyDbThread.start();
+                    break;
+                case 1:
+                    // 判断是否有SD卡
+                    if (ExistSDCard()) {
+                        File file = new File(FileManager.FILE_SDCARD_PATH);
+                        if (!file.exists()) {
+                            file.mkdirs();
+                        }
+                    }
+                    startActivity(new Intent(LoadingActivity.this,
+                            BookShelfActivity.class));
+                    finish();
+                    Toast.makeText(LoadingActivity.this, R.string.copy_finish,
+                            Toast.LENGTH_LONG).show();
+                    break;
+            }
+        }
+    };
 
-	private CopyFileListener copyDB = new CopyFileListener() {
-		@Override
-		public void onCopyFinish() {
-			mHandler.sendEmptyMessage(1);
-		}
-	};
+    private CopyFileListener copyDB = new CopyFileListener() {
+        @Override
+        public void onCopyFinish() {
+            mHandler.sendEmptyMessage(1);
+        }
+    };
 
-	@Override
-	public void onClick(View v) {
-		switch (v.getId()) {
-		default:
-			break;
-		}
-	}
-	
-	private boolean ExistSDCard() {
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()) {
+            default:
+                break;
+        }
+    }
+
+    private boolean ExistSDCard() {
         return android.os.Environment.getExternalStorageState().equals(
                 android.os.Environment.MEDIA_MOUNTED);
-	}
+    }
 }
