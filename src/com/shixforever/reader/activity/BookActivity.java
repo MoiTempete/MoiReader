@@ -6,7 +6,6 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 import android.content.Intent;
-import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import com.shixforever.reader.R;
 import com.shixforever.reader.data.BookFile;
@@ -104,9 +103,9 @@ public class BookActivity extends Activity implements OnSeekBarChangeListener,
     private DBManager mgr;
 
     private List<BookMark> bookmarks;
-    
+
     private static final int FONT_STEP = 2;
-    
+
     private int mCurrentFontSize; // 字体大小
 
     @Override
@@ -224,7 +223,7 @@ public class BookActivity extends Activity implements OnSeekBarChangeListener,
                 return false;
             }
         });
-        
+
         mCurrentFontSize = pagefactory.getM_fontSize();
         setPop();
     }
@@ -235,6 +234,7 @@ public class BookActivity extends Activity implements OnSeekBarChangeListener,
     }
 
     private boolean mIsSubPopUpWindowShowing = false;
+
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         if (keyCode == KeyEvent.KEYCODE_BACK) {
@@ -242,13 +242,13 @@ public class BookActivity extends Activity implements OnSeekBarChangeListener,
                 mToolpop1.dismiss();
                 mToolpop2.dismiss();
                 mToolpop4.dismiss();
-                
+
                 mIsSubPopUpWindowShowing = false;
                 mIsMainPopupWindowShowing = true;
-                
-            	mPopupWindow.showAtLocation(mPageWidget, Gravity.BOTTOM, 0, 0);
-            	
-            	return true;
+
+                mPopupWindow.showAtLocation(mPageWidget, Gravity.BOTTOM, 0, 0);
+
+                return true;
             }
             if (mIsMainPopupWindowShowing) {
                 getWindow().clearFlags(
@@ -265,15 +265,15 @@ public class BookActivity extends Activity implements OnSeekBarChangeListener,
                 mToolpop1.dismiss();
                 mToolpop2.dismiss();
                 mToolpop4.dismiss();
-                
+
                 mIsSubPopUpWindowShowing = false;
                 mIsMainPopupWindowShowing = true;
-                
-            	mPopupWindow.showAtLocation(mPageWidget, Gravity.BOTTOM, 0, 0);
-            	
-            	return true;
+
+                mPopupWindow.showAtLocation(mPageWidget, Gravity.BOTTOM, 0, 0);
+
+                return true;
             }
-            
+
             if (mIsMainPopupWindowShowing) {
                 getWindow().clearFlags(WindowManager.LayoutParams.FLAG_FORCE_NOT_FULLSCREEN);
                 mIsMainPopupWindowShowing = false;
@@ -319,7 +319,7 @@ public class BookActivity extends Activity implements OnSeekBarChangeListener,
      * 初始化所有POPUPWINDOW
      */
     private void setPop() {
-    	int subPopUpWindowHeigt = getResources().getDimensionPixelSize(R.dimen.sub_popup_widow_height);
+        int subPopUpWindowHeigt = getResources().getDimensionPixelSize(R.dimen.sub_popup_widow_height);
         popupwindwow = this.getLayoutInflater().inflate(R.layout.bookpop, null);
         toolpop = this.getLayoutInflater().inflate(R.layout.toolpop, null);
         mPopupWindow = new PopupWindow(popupwindwow, LayoutParams.MATCH_PARENT,
@@ -328,13 +328,13 @@ public class BookActivity extends Activity implements OnSeekBarChangeListener,
                 LayoutParams.WRAP_CONTENT);
         toolpop1 = this.getLayoutInflater().inflate(R.layout.tool11, null);//字体
         mToolpop1 = new PopupWindow(toolpop1, LayoutParams.MATCH_PARENT,
-        		subPopUpWindowHeigt);
+                subPopUpWindowHeigt);
         toolpop2 = this.getLayoutInflater().inflate(R.layout.tool22, null);//亮度
         mToolpop2 = new PopupWindow(toolpop2, LayoutParams.MATCH_PARENT,
-        		subPopUpWindowHeigt);
+                subPopUpWindowHeigt);
         toolpop4 = this.getLayoutInflater().inflate(R.layout.tool44, null);//进度
         mToolpop4 = new PopupWindow(toolpop4, LayoutParams.MATCH_PARENT,
-        		subPopUpWindowHeigt);
+                subPopUpWindowHeigt);
     }
 
     /**
@@ -350,9 +350,9 @@ public class BookActivity extends Activity implements OnSeekBarChangeListener,
         TextView btnBrightness = (TextView) popupwindwow.findViewById(R.id.btn_brightness);
         final TextView btnNight = (TextView) popupwindwow.findViewById(R.id.btn_night);
         final Drawable drawableNight = getResources().getDrawable(R.drawable.btn_night);
-//        drawableNight.setBounds(0,0,20,20);
-        final Drawable drawableDay =  getResources().getDrawable(R.drawable.btn_day);
-//        drawableDay.setBounds(0,0,20,20);
+        //        drawableNight.setBounds(0,0,20,20);
+        final Drawable drawableDay = getResources().getDrawable(R.drawable.btn_day);
+        //        drawableDay.setBounds(0,0,20,20);
         if (isNight) {
             btnNight.setText(getString(R.string.bookpop_night));
             btnNight.setCompoundDrawablesWithIntrinsicBounds(null, drawableNight, null, null);
@@ -408,7 +408,7 @@ public class BookActivity extends Activity implements OnSeekBarChangeListener,
                 break;
             case R.id.seekBar4:
                 markEdit4.setText("" + seekBar4.getProgress() + "%");
-                
+
                 begin = pagefactory.getM_mbBufLen() * seekBar4.getProgress() / 100;
                 if (begin > 0) {
                     try {
@@ -505,21 +505,21 @@ public class BookActivity extends Activity implements OnSeekBarChangeListener,
                 break;
 
             case R.id.iv_font_discre:
-            	mCurrentFontSize -= FONT_STEP;
+                mCurrentFontSize -= FONT_STEP;
                 pagefactory.setTextSize(mCurrentFontSize);
                 pagefactory.onDraw(mCurPageCanvas);
                 pagefactory.onDraw(mNextPageCanvas);
                 mPageWidget.invalidate();
                 break;
-                
+
             case R.id.iv_font_incre:
-            	mCurrentFontSize += FONT_STEP;
+                mCurrentFontSize += FONT_STEP;
                 pagefactory.setTextSize(mCurrentFontSize);
                 pagefactory.onDraw(mCurPageCanvas);
                 pagefactory.onDraw(mNextPageCanvas);
                 mPageWidget.invalidate();
                 break;
-                
+
             default:
                 break;
         }
@@ -530,53 +530,53 @@ public class BookActivity extends Activity implements OnSeekBarChangeListener,
      *
      * @param a
      */
-	public void setToolPop(int a) {
-		if (a != 3 && mPopupWindow.isShowing()) {
-			mPopupWindow.dismiss();
+    public void setToolPop(int a) {
+        if (a != 3 && mPopupWindow.isShowing()) {
+            mPopupWindow.dismiss();
 
-			mIsMainPopupWindowShowing = false;
-			mIsSubPopUpWindowShowing = true;
-		}
+            mIsMainPopupWindowShowing = false;
+            mIsSubPopUpWindowShowing = true;
+        }
 
-		// mToolpop.showAtLocation(mPageWidget, Gravity.BOTTOM, 0,
-		// width * 45 / 320);
-		mToolpop.showAtLocation(mPageWidget, Gravity.BOTTOM, 0, 0);
-		topBar.setVisibility(View.VISIBLE);
-		// 点击字体按钮
-		if (a == 1) {
-			mToolpop1.showAtLocation(mPageWidget, Gravity.BOTTOM, 0, 0);
-			ImageView fontDiscreBtn = (ImageView) toolpop1
-					.findViewById(R.id.iv_font_discre);
-			ImageView fontIncreBtn = (ImageView) toolpop1
-					.findViewById(R.id.iv_font_incre);
-			fontDiscreBtn.setOnClickListener(this);
-			fontIncreBtn.setOnClickListener(this);
-		}
-		// 点击亮度按钮
-		if (a == 2) {
-			mToolpop2.showAtLocation(mPageWidget, Gravity.BOTTOM, 0, 0);
-			seekBar2 = (SeekBar) toolpop2.findViewById(R.id.seekBar2);
-			// 取得当前亮度
-			seekBar2.setMax(255);
-			// 进度条绑定当前亮度
-			seekBar2.setProgress(light);
-			seekBar2.setOnSeekBarChangeListener(this);
-		}
-		// 点击跳转按钮
-		if (a == 4) {
-			mToolpop4.showAtLocation(mPageWidget, Gravity.BOTTOM, 0, 0);
-			seekBar4 = (SeekBar) toolpop4.findViewById(R.id.seekBar4);
-			markEdit4 = (TextView) toolpop4.findViewById(R.id.markEdit4);
-			// jumpPage = sp.getInt(bookPath + "jumpPage", 1);
-			float fPercent = (float) (begin * 1.0 / pagefactory.getM_mbBufLen());
-			DecimalFormat df = new DecimalFormat("#0");
-			String strPercent = df.format(fPercent * 100) + "%";
-			markEdit4.setText(strPercent);
-			seekBar4.setProgress(Integer.parseInt(df.format(fPercent * 100)));
-			seekBar4.setOnSeekBarChangeListener(this);
-		}
+        // mToolpop.showAtLocation(mPageWidget, Gravity.BOTTOM, 0,
+        // width * 45 / 320);
+        mToolpop.showAtLocation(mPageWidget, Gravity.BOTTOM, 0, 0);
+        topBar.setVisibility(View.VISIBLE);
+        // 点击字体按钮
+        if (a == 1) {
+            mToolpop1.showAtLocation(mPageWidget, Gravity.BOTTOM, 0, 0);
+            ImageView fontDiscreBtn = (ImageView) toolpop1
+                    .findViewById(R.id.iv_font_discre);
+            ImageView fontIncreBtn = (ImageView) toolpop1
+                    .findViewById(R.id.iv_font_incre);
+            fontDiscreBtn.setOnClickListener(this);
+            fontIncreBtn.setOnClickListener(this);
+        }
+        // 点击亮度按钮
+        if (a == 2) {
+            mToolpop2.showAtLocation(mPageWidget, Gravity.BOTTOM, 0, 0);
+            seekBar2 = (SeekBar) toolpop2.findViewById(R.id.seekBar2);
+            // 取得当前亮度
+            seekBar2.setMax(255);
+            // 进度条绑定当前亮度
+            seekBar2.setProgress(light);
+            seekBar2.setOnSeekBarChangeListener(this);
+        }
+        // 点击跳转按钮
+        if (a == 4) {
+            mToolpop4.showAtLocation(mPageWidget, Gravity.BOTTOM, 0, 0);
+            seekBar4 = (SeekBar) toolpop4.findViewById(R.id.seekBar4);
+            markEdit4 = (TextView) toolpop4.findViewById(R.id.markEdit4);
+            // jumpPage = sp.getInt(bookPath + "jumpPage", 1);
+            float fPercent = (float) (begin * 1.0 / pagefactory.getM_mbBufLen());
+            DecimalFormat df = new DecimalFormat("#0");
+            String strPercent = df.format(fPercent * 100) + "%";
+            markEdit4.setText(strPercent);
+            seekBar4.setProgress(Integer.parseInt(df.format(fPercent * 100)));
+            seekBar4.setOnSeekBarChangeListener(this);
+        }
 
-	}
+    }
 
     /**
      * 关闭55个弹出pop
