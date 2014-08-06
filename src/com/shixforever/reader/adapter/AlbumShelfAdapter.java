@@ -13,7 +13,7 @@ import com.shixforever.reader.data.BookFile;
 import com.shixforever.reader.utils.FileTools;
 
 public class AlbumShelfAdapter extends BaseAdapter {
-    
+
     private List<BookFile> albums;
 
     private Context context;
