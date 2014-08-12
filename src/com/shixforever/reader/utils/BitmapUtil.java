@@ -1,7 +1,6 @@
 package com.shixforever.reader.utils;
 
 import com.shixforever.reader.manager.SysManager;
-
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.Matrix;
