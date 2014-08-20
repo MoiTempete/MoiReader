@@ -1,3 +1,4 @@
+
 package com.shixforever.reader.activity;
 
 import java.io.IOException;
@@ -40,8 +41,7 @@ import android.widget.TextView;
 import android.widget.SeekBar.OnSeekBarChangeListener;
 import android.widget.Toast;
 
-public class BookActivity extends Activity implements OnSeekBarChangeListener,
-        OnClickListener {
+public class BookActivity extends Activity implements OnSeekBarChangeListener, OnClickListener {
 
     private static final String TAG = "BookActivity";
 
@@ -78,8 +78,7 @@ public class BookActivity extends Activity implements OnSeekBarChangeListener,
     private static String word = "";// 记录当前页面的文字
 
     // catch路径
-    private String filecatchpath = "/data/data/"
-            + FusionField.baseActivity.getPackageName() + "/";
+    private String filecatchpath = "/data/data/" + FusionField.baseActivity.getPackageName() + "/";
 
     private PopupWindow mPopupWindow, mToolpop, mToolpop1, mToolpop2, mToolpop4;
 
@@ -113,8 +112,7 @@ public class BookActivity extends Activity implements OnSeekBarChangeListener,
         super.onCreate(savedInstanceState);
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);// 竖屏
-        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
-                WindowManager.LayoutParams.FLAG_FULLSCREEN);
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         mgr = new DBManager(this);
 
         mContext = getBaseContext();
@@ -134,11 +132,9 @@ public class BookActivity extends Activity implements OnSeekBarChangeListener,
 
         mPageWidget = new PageWidget(this, width, hight);
         // 当前页
-        mCurPageBitmap = Bitmap.createBitmap(width, hight,
-                Bitmap.Config.ARGB_8888);
+        mCurPageBitmap = Bitmap.createBitmap(width, hight, Bitmap.Config.ARGB_8888);
         // 下一页
-        mNextPageBitmap = Bitmap.createBitmap(width, hight,
-                Bitmap.Config.ARGB_8888);
+        mNextPageBitmap = Bitmap.createBitmap(width, hight, Bitmap.Config.ARGB_8888);
         // 画布
         mCurPageCanvas = new Canvas(mCurPageBitmap);
         mNextPageCanvas = new Canvas(mNextPageBitmap);
@@ -194,8 +190,7 @@ public class BookActivity extends Activity implements OnSeekBarChangeListener,
                                 e1.printStackTrace();
                             }
                             if (pagefactory.isfirstPage()) {
-                                Toast.makeText(mContext, "当前是第一页",
-                                        Toast.LENGTH_SHORT).show();
+                                Toast.makeText(mContext, "当前是第一页", Toast.LENGTH_SHORT).show();
                                 return false;
                             }
                             pagefactory.onDraw(mNextPageCanvas);
@@ -208,8 +203,7 @@ public class BookActivity extends Activity implements OnSeekBarChangeListener,
                                 e1.printStackTrace();
                             }
                             if (pagefactory.islastPage()) {
-                                Toast.makeText(mContext, "已经是最后一页了",
-                                        Toast.LENGTH_SHORT).show();
+                                Toast.makeText(mContext, "已经是最后一页了", Toast.LENGTH_SHORT).show();
                                 return false;
                             }
                             pagefactory.onDraw(mNextPageCanvas);
@@ -251,8 +245,7 @@ public class BookActivity extends Activity implements OnSeekBarChangeListener,
                 return true;
             }
             if (mIsMainPopupWindowShowing) {
-                getWindow().clearFlags(
-                        WindowManager.LayoutParams.FLAG_FORCE_NOT_FULLSCREEN);
+                getWindow().clearFlags(WindowManager.LayoutParams.FLAG_FORCE_NOT_FULLSCREEN);
                 mIsMainPopupWindowShowing = false;
                 mPopupWindow.dismiss();
                 popDismiss();
@@ -322,19 +315,14 @@ public class BookActivity extends Activity implements OnSeekBarChangeListener,
         int subPopUpWindowHeigt = getResources().getDimensionPixelSize(R.dimen.sub_popup_widow_height);
         popupwindwow = this.getLayoutInflater().inflate(R.layout.bookpop, null);
         toolpop = this.getLayoutInflater().inflate(R.layout.toolpop, null);
-        mPopupWindow = new PopupWindow(popupwindwow, LayoutParams.MATCH_PARENT,
-                LayoutParams.WRAP_CONTENT);
-        mToolpop = new PopupWindow(toolpop, LayoutParams.MATCH_PARENT,
-                LayoutParams.WRAP_CONTENT);
-        toolpop1 = this.getLayoutInflater().inflate(R.layout.tool11, null);//字体
-        mToolpop1 = new PopupWindow(toolpop1, LayoutParams.MATCH_PARENT,
-                subPopUpWindowHeigt);
-        toolpop2 = this.getLayoutInflater().inflate(R.layout.tool22, null);//亮度
-        mToolpop2 = new PopupWindow(toolpop2, LayoutParams.MATCH_PARENT,
-                subPopUpWindowHeigt);
-        toolpop4 = this.getLayoutInflater().inflate(R.layout.tool44, null);//进度
-        mToolpop4 = new PopupWindow(toolpop4, LayoutParams.MATCH_PARENT,
-                subPopUpWindowHeigt);
+        mPopupWindow = new PopupWindow(popupwindwow, LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT);
+        mToolpop = new PopupWindow(toolpop, LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT);
+        toolpop1 = this.getLayoutInflater().inflate(R.layout.tool11, null);// 字体
+        mToolpop1 = new PopupWindow(toolpop1, LayoutParams.MATCH_PARENT, subPopUpWindowHeigt);
+        toolpop2 = this.getLayoutInflater().inflate(R.layout.tool22, null);// 亮度
+        mToolpop2 = new PopupWindow(toolpop2, LayoutParams.MATCH_PARENT, subPopUpWindowHeigt);
+        toolpop4 = this.getLayoutInflater().inflate(R.layout.tool44, null);// 进度
+        mToolpop4 = new PopupWindow(toolpop4, LayoutParams.MATCH_PARENT, subPopUpWindowHeigt);
     }
 
     /**
@@ -350,9 +338,9 @@ public class BookActivity extends Activity implements OnSeekBarChangeListener,
         TextView btnBrightness = (TextView) popupwindwow.findViewById(R.id.btn_brightness);
         final TextView btnNight = (TextView) popupwindwow.findViewById(R.id.btn_night);
         final Drawable drawableNight = getResources().getDrawable(R.drawable.btn_night);
-        //        drawableNight.setBounds(0,0,20,20);
+        // drawableNight.setBounds(0,0,20,20);
         final Drawable drawableDay = getResources().getDrawable(R.drawable.btn_day);
-        //        drawableDay.setBounds(0,0,20,20);
+        // drawableDay.setBounds(0,0,20,20);
         if (isNight) {
             btnNight.setText(getString(R.string.bookpop_night));
             btnNight.setCompoundDrawablesWithIntrinsicBounds(null, drawableNight, null, null);
@@ -389,8 +377,7 @@ public class BookActivity extends Activity implements OnSeekBarChangeListener,
     }
 
     @Override
-    public void onProgressChanged(SeekBar seekBar, int progress,
-            boolean fromUser) {
+    public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
         switch (seekBar.getId()) {
 
             case R.id.seekBar2:
@@ -400,8 +387,7 @@ public class BookActivity extends Activity implements OnSeekBarChangeListener,
                 if (tmpInt < 80) {
                     tmpInt = 80;
                 }
-                WindowManager.LayoutParams lp = BookActivity.this.getWindow()
-                        .getAttributes();
+                WindowManager.LayoutParams lp = BookActivity.this.getWindow().getAttributes();
                 lp.screenBrightness = (float) tmpInt * (1f / 255f);
                 BookActivity.this.getWindow().setAttributes(lp);
                 light = tmpInt;
@@ -419,8 +405,7 @@ public class BookActivity extends Activity implements OnSeekBarChangeListener,
                     pagefactory.setM_mbBufEnd(begin);
                     pagefactory.setM_mbBufBegin(begin);
                     pagefactory.onDraw(mNextPageCanvas);
-                    mPageWidget.setBitmaps(mCurPageBitmap,
-                            mNextPageBitmap);
+                    mPageWidget.setBitmaps(mCurPageBitmap, mNextPageBitmap);
                     mPageWidget.invalidate();
                     postInvalidateUI();
                 }
@@ -446,8 +431,7 @@ public class BookActivity extends Activity implements OnSeekBarChangeListener,
                         pagefactory.setM_mbBufEnd(markBegin);
                         pagefactory.setM_mbBufBegin(markBegin);
                         pagefactory.onDraw(mNextPageCanvas);
-                        mPageWidget.setBitmaps(mCurPageBitmap,
-                                mNextPageBitmap);
+                        mPageWidget.setBitmaps(mCurPageBitmap, mNextPageBitmap);
                         mPageWidget.invalidate();
                         postInvalidateUI();
                     }
@@ -545,10 +529,8 @@ public class BookActivity extends Activity implements OnSeekBarChangeListener,
         // 点击字体按钮
         if (a == 1) {
             mToolpop1.showAtLocation(mPageWidget, Gravity.BOTTOM, 0, 0);
-            ImageView fontDiscreBtn = (ImageView) toolpop1
-                    .findViewById(R.id.iv_font_discre);
-            ImageView fontIncreBtn = (ImageView) toolpop1
-                    .findViewById(R.id.iv_font_incre);
+            ImageView fontDiscreBtn = (ImageView) toolpop1.findViewById(R.id.iv_font_discre);
+            ImageView fontIncreBtn = (ImageView) toolpop1.findViewById(R.id.iv_font_incre);
             fontDiscreBtn.setOnClickListener(this);
             fontIncreBtn.setOnClickListener(this);
         }
@@ -611,11 +593,9 @@ public class BookActivity extends Activity implements OnSeekBarChangeListener,
     private void setReadBg() {
         pagefactory.setTextColor(isNight);
         if (isNight) {
-            pagefactory.setBgBitmap(BitmapFactory.decodeResource(
-                    this.getResources(), R.drawable.bg_book_night));
+            pagefactory.setBgBitmap(BitmapFactory.decodeResource(this.getResources(), R.drawable.bg_book_night));
         } else {
-            pagefactory.setBgBitmap(BitmapFactory.decodeResource(
-                    this.getResources(), R.drawable.bg_book_day));
+            pagefactory.setBgBitmap(BitmapFactory.decodeResource(this.getResources(), R.drawable.bg_book_day));
         }
     }
 
