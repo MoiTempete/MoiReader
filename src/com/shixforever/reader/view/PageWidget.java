@@ -11,12 +11,15 @@ import android.graphics.Path;
 import android.graphics.PointF;
 import android.graphics.Region;
 import android.graphics.drawable.GradientDrawable;
+import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Scroller;
+import com.shixforever.reader.activity.BookActivity;
 
 public class PageWidget extends View {
 
+    private final static float THRESHOLD_VALUE = 20; // 点击/滑动的判断阈值
 	private int mScreenWidth = 720; // 屏幕宽
 	private int mScreenHeight = 1280; // 屏幕高
 	private int mCornerX = 1; // 拖拽点对应的页脚
@@ -36,6 +39,8 @@ public class PageWidget extends View {
 	PointF mBezierControl2 = new PointF();
 	PointF mBeziervertex2 = new PointF();
 	PointF mBezierEnd2 = new PointF();
+
+    PointF mStartPoint = new PointF();
 
 	float mMiddleX;
 	float mMiddleY;
@@ -61,6 +66,8 @@ public class PageWidget extends View {
 
 	Paint mPaint;
 	Scroller mScroller;
+
+    boolean mIsMove = true;
 
 	public PageWidget(Context context, int width, int height) {
 		super(context);
@@ -105,24 +112,44 @@ public class PageWidget extends View {
                 || (mCornerX == mScreenWidth && mCornerY == 0);
 	}
 
-	public boolean doTouchEvent(MotionEvent event) {
+	public boolean doTouchEvent(MotionEvent event, BookActivity context) {
 
-		if (event.getAction() == MotionEvent.ACTION_MOVE) {
+        if (event.getAction() == MotionEvent.ACTION_MOVE) {
 			mTouch.x = event.getX();
 			mTouch.y = event.getY();
+            if (isMove(mStartPoint, mTouch)) {
+                if (dragToRight()) {
+                    context.toPrePage();
+                } else {
+                    context.toNextPage();
+                }
+                mIsMove = true;
+            } else {
+                mIsMove = false;
+            }
 			this.postInvalidate();
 		}
 		if (event.getAction() == MotionEvent.ACTION_DOWN) {
 			mTouch.x = event.getX();
 			mTouch.y = event.getY();
+            mStartPoint.x = event.getX();
+            mStartPoint.y = event.getY();
+            mIsMove = false;
 		}
 		if (event.getAction() == MotionEvent.ACTION_UP) {
-			// 直接画出动画而不使用时上面的条件判断
-			startAnimation(1200);
-			this.postInvalidate();
+            if (mIsMove) {
+                startAnimation(1200);
+                this.postInvalidate();
+            }
 		}
-		return true;
+		return mIsMove;
 	}
+
+    private boolean isMove(PointF startPoint, PointF touchPoint) {
+        float deltaX = Math.abs(touchPoint.x - startPoint.x);
+        float deltaY = Math.abs(touchPoint.y - startPoint.y);
+        return !(deltaX < THRESHOLD_VALUE && deltaY < THRESHOLD_VALUE);
+    }
 
 	/**
 	 * 求解直线P1P2和直线P3P4的交点坐标
@@ -201,11 +228,6 @@ public class PageWidget extends View {
 		mBezierEnd2 = getCross(mTouch, mBezierControl2, mBezierStart1,
 				mBezierStart2);
 
-		/*
-		 * mBeziervertex1.x 推导
-		 * ((mBezierStart1.x+mBezierEnd1.x)/2+mBezierControl1.x)/2 化简等价于
-		 * (mBezierStart1.x+ 2*mBezierControl1.x+mBezierEnd1.x) / 4
-		 */
 		mBeziervertex1.x = (mBezierStart1.x + 2 * mBezierControl1.x + mBezierEnd1.x) / 4;
 		mBeziervertex1.y = (2 * mBezierControl1.y + mBezierStart1.y + mBezierEnd1.y) / 4;
 		mBeziervertex2.x = (mBezierStart2.x + 2 * mBezierControl2.x + mBezierEnd2.x) / 4;
@@ -230,6 +252,12 @@ public class PageWidget extends View {
 		canvas.drawBitmap(bitmap, 0, 0, null);
 		canvas.restore();
 	}
+
+    private void drawCurrentPageArea(Canvas canvas, Bitmap bitmap) {
+        canvas.save();
+        canvas.drawBitmap(bitmap, 0, 0, null);
+        canvas.restore();
+    }
 
 	private void drawNextPageAreaAndShadow(Canvas canvas, Bitmap bitmap) {
 		mPath1.reset();
@@ -277,12 +305,16 @@ public class PageWidget extends View {
 
 	@Override
 	protected void onDraw(Canvas canvas) {
-		canvas.drawColor(0xFFAAAAAA);
-		calcPoints();
-		drawCurrentPageArea(canvas, mCurPageBitmap, mPath0);
-		drawNextPageAreaAndShadow(canvas, mNextPageBitmap);
-		drawCurrentPageShadow(canvas);
-		drawCurrentBackArea(canvas, mCurPageBitmap);
+        canvas.drawColor(0xFFAAAAAA);
+        if (mIsMove) {
+            calcPoints();
+            drawCurrentPageArea(canvas, mCurPageBitmap, mPath0);
+            drawNextPageAreaAndShadow(canvas, mNextPageBitmap);
+            drawCurrentPageShadow(canvas);
+            drawCurrentBackArea(canvas, mCurPageBitmap);
+        } else {
+            drawCurrentPageArea(canvas, mCurPageBitmap);
+        }
 	}
 
 	/**
@@ -540,7 +572,7 @@ public class PageWidget extends View {
 	 * 
 	 * @return
 	 */
-	public boolean DragToRight() {
+	public boolean dragToRight() {
         return mCornerX <= 0;
     }
 

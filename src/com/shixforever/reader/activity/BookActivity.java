@@ -63,7 +63,7 @@ public class BookActivity extends Activity implements OnSeekBarChangeListener, O
 
     private int width;
 
-    private int hight;
+    private int height;
 
     private static int begin = 0;// 记录的书籍开始位置
 
@@ -120,7 +120,7 @@ public class BookActivity extends Activity implements OnSeekBarChangeListener, O
         DisplayMetrics dm = new DisplayMetrics();
         this.getWindowManager().getDefaultDisplay().getMetrics(dm);
         width = dm.widthPixels;
-        hight = dm.heightPixels;
+        height = dm.heightPixels;
 
         sp = getSharedPreferences("config", MODE_PRIVATE);
         editor = sp.edit();
@@ -130,11 +130,11 @@ public class BookActivity extends Activity implements OnSeekBarChangeListener, O
         isNight = sp.getBoolean("night", false);
         size = sp.getInt("size", defaultSize);
 
-        mPageWidget = new PageWidget(this, width, hight);
+        mPageWidget = new PageWidget(this, width, height);
         // 当前页
-        mCurPageBitmap = Bitmap.createBitmap(width, hight, Bitmap.Config.ARGB_8888);
+        mCurPageBitmap = Bitmap.createBitmap(width, height, Bitmap.Config.ARGB_8888);
         // 下一页
-        mNextPageBitmap = Bitmap.createBitmap(width, hight, Bitmap.Config.ARGB_8888);
+        mNextPageBitmap = Bitmap.createBitmap(width, height, Bitmap.Config.ARGB_8888);
         // 画布
         mCurPageCanvas = new Canvas(mCurPageBitmap);
         mNextPageCanvas = new Canvas(mNextPageBitmap);
@@ -144,7 +144,7 @@ public class BookActivity extends Activity implements OnSeekBarChangeListener, O
         rlayout.addView(mPageWidget);
 
         // 工厂
-        pagefactory = new BookPageFactory(this, width, hight);
+        pagefactory = new BookPageFactory(this, width, height);
 
         BookFile bookFile = (BookFile) getIntent().getExtras().getSerializable("path");
         filepath = bookFile.name;
@@ -175,43 +175,14 @@ public class BookActivity extends Activity implements OnSeekBarChangeListener, O
                 boolean ret;
                 if (v == mPageWidget) {
                     if (e.getAction() == MotionEvent.ACTION_DOWN) {
-                        if (e.getY() > hight) {
+                        if (e.getY() > height) {
                             return false;
                         }
                         mPageWidget.abortAnimation();
                         mPageWidget.calcCornerXY(e.getX(), e.getY());
                         pagefactory.onDraw(mCurPageCanvas);
-                        if (mPageWidget.DragToRight()) {
-                            try {
-                                pagefactory.prePage();
-                                begin = pagefactory.getM_mbBufBegin();// 获取当前阅读位置
-                                word = pagefactory.getFirstLineText();// 获取当前阅读位置的首行文字
-                            } catch (IOException e1) {
-                                e1.printStackTrace();
-                            }
-                            if (pagefactory.isfirstPage()) {
-                                Toast.makeText(mContext, "当前是第一页", Toast.LENGTH_SHORT).show();
-                                return false;
-                            }
-                            pagefactory.onDraw(mNextPageCanvas);
-                        } else {
-                            try {
-                                pagefactory.nextPage();
-                                begin = pagefactory.getM_mbBufBegin();// 获取当前阅读位置
-                                word = pagefactory.getFirstLineText();// 获取当前阅读位置的首行文字
-                            } catch (IOException e1) {
-                                e1.printStackTrace();
-                            }
-                            if (pagefactory.islastPage()) {
-                                Toast.makeText(mContext, "已经是最后一页了", Toast.LENGTH_SHORT).show();
-                                return false;
-                            }
-                            pagefactory.onDraw(mNextPageCanvas);
-                        }
-                        mPageWidget.setBitmaps(mCurPageBitmap, mNextPageBitmap);
                     }
-                    editor.putInt(filepath + "begin", begin).commit();
-                    ret = mPageWidget.doTouchEvent(e);
+                    ret = mPageWidget.doTouchEvent(e, BookActivity.this);
                     return ret;
                 }
                 return false;
@@ -220,6 +191,52 @@ public class BookActivity extends Activity implements OnSeekBarChangeListener, O
 
         mCurrentFontSize = pagefactory.getM_fontSize();
         setPop();
+        
+        mPageWidget.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (mIsSubPopUpWindowShowing) {
+                    hideSubMenu();
+                }
+                if (mIsMainPopupWindowShowing) {
+                    setMainMenuVisable(false);
+                } else {
+                    setMainMenuVisable(true);
+                }
+            }
+        });
+    }
+
+    public void toPrePage() {
+        try {
+            pagefactory.prePage();
+            begin = pagefactory.getM_mbBufBegin();// 获取当前阅读位置
+            word = pagefactory.getFirstLineText();// 获取当前阅读位置的首行文字
+        } catch (IOException e1) {
+            e1.printStackTrace();
+        }
+        if (pagefactory.isfirstPage()) {
+            Toast.makeText(mContext, "当前是第一页", Toast.LENGTH_SHORT).show();
+        }
+        pagefactory.onDraw(mNextPageCanvas);
+        mPageWidget.setBitmaps(mCurPageBitmap, mNextPageBitmap);
+        editor.putInt(filepath + "begin", begin).commit();
+    }
+
+    public void toNextPage() {
+        try {
+            pagefactory.nextPage();
+            begin = pagefactory.getM_mbBufBegin();// 获取当前阅读位置
+            word = pagefactory.getFirstLineText();// 获取当前阅读位置的首行文字
+        } catch (IOException e1) {
+            e1.printStackTrace();
+        }
+        if (pagefactory.islastPage()) {
+            Toast.makeText(mContext, "已经是最后一页了", Toast.LENGTH_SHORT).show();
+        }
+        pagefactory.onDraw(mNextPageCanvas);
+        mPageWidget.setBitmaps(mCurPageBitmap, mNextPageBitmap);
+        editor.putInt(filepath + "begin", begin).commit();
     }
 
     @Override
@@ -233,53 +250,53 @@ public class BookActivity extends Activity implements OnSeekBarChangeListener, O
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         if (keyCode == KeyEvent.KEYCODE_BACK) {
             if (mIsSubPopUpWindowShowing) {
-                mToolpop1.dismiss();
-                mToolpop2.dismiss();
-                mToolpop4.dismiss();
-
-                mIsSubPopUpWindowShowing = false;
-                mIsMainPopupWindowShowing = true;
-
-                mPopupWindow.showAtLocation(mPageWidget, Gravity.BOTTOM, 0, 0);
-
+                hideSubMenu();
                 return true;
             }
             if (mIsMainPopupWindowShowing) {
-                getWindow().clearFlags(WindowManager.LayoutParams.FLAG_FORCE_NOT_FULLSCREEN);
-                mIsMainPopupWindowShowing = false;
-                mPopupWindow.dismiss();
-                popDismiss();
+                setMainMenuVisable(false);
                 return true;
             }
         }
 
         if (keyCode == KeyEvent.KEYCODE_MENU) {
             if (mIsSubPopUpWindowShowing) {
-                mToolpop1.dismiss();
-                mToolpop2.dismiss();
-                mToolpop4.dismiss();
-
-                mIsSubPopUpWindowShowing = false;
-                mIsMainPopupWindowShowing = true;
-
-                mPopupWindow.showAtLocation(mPageWidget, Gravity.BOTTOM, 0, 0);
-
+                hideSubMenu();
                 return true;
             }
 
             if (mIsMainPopupWindowShowing) {
-                getWindow().clearFlags(WindowManager.LayoutParams.FLAG_FORCE_NOT_FULLSCREEN);
-                mIsMainPopupWindowShowing = false;
-                mPopupWindow.dismiss();
-                popDismiss();
+                setMainMenuVisable(false);
             } else {
-                getWindow().addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
-                getWindow().addFlags(WindowManager.LayoutParams.FLAG_FORCE_NOT_FULLSCREEN);
-                mIsMainPopupWindowShowing = true;
-                pop();
+                setMainMenuVisable(true);
             }
         }
         return super.onKeyDown(keyCode, event);
+    }
+
+    private void hideSubMenu() {
+        mToolpop1.dismiss();
+        mToolpop2.dismiss();
+        mToolpop4.dismiss();
+
+        mIsSubPopUpWindowShowing = false;
+        mIsMainPopupWindowShowing = true;
+
+        mPopupWindow.showAtLocation(mPageWidget, Gravity.BOTTOM, 0, 0);
+    }
+
+    private void setMainMenuVisable(boolean show) {
+        if (show) {
+            getWindow().addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
+            getWindow().addFlags(WindowManager.LayoutParams.FLAG_FORCE_NOT_FULLSCREEN);
+            mIsMainPopupWindowShowing = true;
+            pop();
+        } else {
+            getWindow().clearFlags(WindowManager.LayoutParams.FLAG_FORCE_NOT_FULLSCREEN);
+            mIsMainPopupWindowShowing = false;
+            mPopupWindow.dismiss();
+            popDismiss();
+        }
     }
 
     @Override
