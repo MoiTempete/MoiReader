@@ -199,9 +199,9 @@ public class BookActivity extends Activity implements OnSeekBarChangeListener, O
                     hideSubMenu();
                 }
                 if (mIsMainPopupWindowShowing) {
-                    setMainMenuVisable(false);
+                    setMainMenuVisibility(false);
                 } else {
-                    setMainMenuVisable(true);
+                    setMainMenuVisibility(true);
                 }
             }
         });
@@ -254,7 +254,7 @@ public class BookActivity extends Activity implements OnSeekBarChangeListener, O
                 return true;
             }
             if (mIsMainPopupWindowShowing) {
-                setMainMenuVisable(false);
+                setMainMenuVisibility(false);
                 return true;
             }
         }
@@ -266,9 +266,9 @@ public class BookActivity extends Activity implements OnSeekBarChangeListener, O
             }
 
             if (mIsMainPopupWindowShowing) {
-                setMainMenuVisable(false);
+                setMainMenuVisibility(false);
             } else {
-                setMainMenuVisable(true);
+                setMainMenuVisibility(true);
             }
         }
         return super.onKeyDown(keyCode, event);
@@ -285,7 +285,7 @@ public class BookActivity extends Activity implements OnSeekBarChangeListener, O
         mPopupWindow.showAtLocation(mPageWidget, Gravity.BOTTOM, 0, 0);
     }
 
-    private void setMainMenuVisable(boolean show) {
+    private void setMainMenuVisibility(boolean show) {
         if (show) {
             getWindow().addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
             getWindow().addFlags(WindowManager.LayoutParams.FLAG_FORCE_NOT_FULLSCREEN);
